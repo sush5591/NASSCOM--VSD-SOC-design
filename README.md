@@ -1,1 +1,1 @@
-# https-github.comNASSCOM--VSD-SOC-design
+# NASSCOM--VSD-SOC-design
