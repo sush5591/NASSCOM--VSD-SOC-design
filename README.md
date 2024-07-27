@@ -164,4 +164,173 @@ The simplified RTL to GDS flow begins with an RTL file and, through a series of 
             Physical Verification Checks: Design Rule Check (DRC) and Layout vs. Schematic (LVS). DRC verifies design rule compliance, while LVS ensures functional correctness against the gate-level netlist.
             Timing Checks: Static Timing Analysis (STA) checks the design for timing violations.
 
+-----------------------------------------------------------------------------------------------------------------------------------------
+## Introduction to OpenLANE Detailed ASIC Design Flow
 
+The image illustrates the detailed ASIC design flow in OpenLANE. The process begins with the Design RTL, which undergoes RTL synthesis using Yosys and ABC to produce an optimized gate-level netlist. This netlist is then subjected to STA (Static Timing Analysis) to check for timing violations. Following STA, Design for Test (DFT) is performed, though this step is optional and uses the FAULT tool.
+![image](https://github.com/user-attachments/assets/deba3321-63fc-4c72-bfb6-bde3fbf1252d)
+
+OpenLane  started as an Open Source Flow for a true Open Source Tape-out experiment.It was from e-fabless.It is a platform which supports different tools such as Yosys,OpenRoad,Magic,KLlayout and some other Open source tools.It integrates the various steps of Silicon Implementation and abstracts it. At e-fabless they have an SOC family called Strive. Strive is a family of open everything SOCs having Open PDK, Open RTL, Open EDA.
+
+![image](https://github.com/user-attachments/assets/b900a2cb-938f-45d1-9d4a-00c5c65e6470)
+
+
+FAULT (for DFT) includes:
+
+   - Scan Insertion
+   - Automatic Test Pattern Generation (ATPG)
+   - Test Pattern Compaction
+   - Fault Coverage
+   - Fault Simulation
+
+![image](https://github.com/user-attachments/assets/6552ef03-f1c7-4505-a2da-879d72a5cdc0)
+
+
+After DFT, the next phase is Physical Implementation, also known as Automated Place and Route (PnR), using OpenRoad.
+
+OpenRoad (for Physical Implementation) includes:
+
+    Floor/Power Planning
+    End Decoupling Capacitors and Tap Cells Insertion
+    Placement: Global and Detailed
+    Post-Placement Optimization
+    Clock Tree Synthesis
+    Routing: Global and Detailed
+
+During PnR, Logic Equivalence Checking (LEC) must be performed for each design change to ensure the functionality remains unchanged after netlist modifications. An important step during physical implementation is the "Fake Antenna Diodes Insertion Script."
+
+Dealing with Antenna Rule Violations:
+When a metal wire segment is fabricated, it can act as an antenna. Reactive ion etching can cause charge accumulation on the wire, potentially damaging transistor gates during fabrication.
+
+Solutions:
+
+Bridging: Attaching a higher layer intermediary, which requires router awareness.
+![image](https://github.com/user-attachments/assets/d9aecb06-f93a-4368-8840-481d9db0dd32)
+
+
+Add antenna diode cell to leak away the charges. Antenna diodes are provided by the SCL. For this we took a preventive approach.
+Add a Fake antenna didoe next to every cell input after placement.  Run the Antenna Checker(Magic) on the routed layout.If the checker reports violation on the cell input pin, replace the fake diode cell by a real one
+
+
+And at the end, we perform Physical Verification. Which includes DRC(Design Rule Checking) , LVS(Layout Vs Schematic). Along with the P.V we also performs STA to check for timing violations in the design.
+
+MAGIC is used for DRC and SPICE Extraction from Layout.
+
+MAGIC and Netgen are used for LVS by comparing Extracted SPICE by MAGIC and Verilog Netlist.
+
+![image](https://github.com/user-attachments/assets/67f6965a-71f0-4318-96e2-b4d0f49becce)
+
+
+
+
+
+
+
+# RTL2GDS OpenLANE ASIC Flow Practical implementation
+
+
+
+
+## Day 1 Labs
+
+
+![image](https://github.com/user-attachments/assets/83c36b16-a82d-4753-ac05-775e303c6b90)
+
+
+![Screenshot from 2024-05-27 08-56-26](https://github.com/AnoushkaTripathi/NASSCOM-VSD-SoC-design-Program/assets/98522737/e1e4228b-42a1-48b1-bab2-0b202e482c84)
+
+
+1.  Understanding the use of various linux commands
+
+  -  pwd : It displays the present working directory and its path.
+
+   - cd : Using this command we can move in both ways in the directory tree.
+
+- ls : It lists all the sub-directories and files present in the current directory.
+
+ - mkdir : Using this command, we can create a new directory.
+
+  -  rmdir : Using his command, we can delete an existing directory.
+
+ -   rm : This command is used to delete the files.
+
+  -  help : using this command we can know the working of any command.
+
+   - clear : This command clears the terminal.
+
+
+
+  Key Files and Directories:
+
+    libs.ref: Houses the design libraries, including standard cells, IO cells, and other related files.
+        lef: Library Exchange Format files describing the cell layouts.
+        lib: Liberty files for timing and power analysis.
+        gds: GDSII files containing the graphical layout of the cells.
+        verilog: Verilog models of the cells.
+
+    libs.tech: Contains technology files tailored for specific EDA tools.
+        magic: Magic technology files.
+        klayout: KLayout technology files and layer properties.
+        ngspice: SPICE models for circuit simulation.
+        openroad: Files for OpenROAD flow.
+        drc: Design Rule Check files.
+        lvs: Layout Versus Schematic check files.
+        pex: Parasitic Extraction files.
+
+
+
+
+
+![Screenshot from 2024-05-28 10-58-19](https://github.com/AnoushkaTripathi/NASSCOM-VSD-SoC-design-Program/assets/98522737/7a59a63e-171f-42d0-8ba0-f3947915923e)
+
+To run in interactive mode (step by step mode)
+
+    bash-4.2$ ./flow.tcl -interactive
+    
+    
+`Package import and check`
+
+    % package require openlane
+
+`Prepare design`
+
+To prepare and setup the design
+
+    % prep -design picorv32a
+
+
+
+![image](https://github.com/AnoushkaTripathi/NASSCOM-VSD-SoC-design-Program/assets/98522737/cb2fcb1f-989f-4f64-9713-9b8f94e23131)
+
+Once the preparation is complete, a new directory with the current date will be generated within the “runs” folder. Inside this directory, all the necessary subdirectories for storing results, reports, and other relevant data will be created.
+
+![image](https://github.com/AnoushkaTripathi/NASSCOM-VSD-SoC-design-Program/assets/98522737/c2017d45-9c58-48ae-a670-95990cf51a81)
+
+
+The preparation step involves the following actions for the picorv32a design within the openLANE flow:
+
+**Directory Structure Setup:**
+
+A new directory structure is created to organize the design files.
+This structure includes subdirectories for different components (e.g., results, reports).
+
+- LEF Merging:
+The technology LEF (.tlef) and cell LEF (.lef) files are merged into a unified format.The technology LEF contains layer information (such as metal layers), while the cell LEF contains cell informations.
+- Design Placement:
+All design-related files are placed under the designs directory.
+This ensures that the necessary files are organized and accessible during subsequent steps.
+
+![image](https://github.com/AnoushkaTripathi/NASSCOM-VSD-SoC-design-Program/assets/98522737/7fef32f0-2f61-4505-9f71-d4d457393105)
+
+
+| `config.tcl`	 | contains the configurations used by openLANE |                      
+| :-------- | :-------                                     | 
+| `src`      |  contains verilog files and constraints file|
+
+
+
+
+![Screenshot from 2024-05-28 10-20-40](https://github.com/AnoushkaTripathi/NASSCOM-VSD-SoC-design-Program/assets/98522737/498fa493-f289-4241-ae6e-58ea967f12a6)
+
+` Synthesis `
+   % run_synthesis
