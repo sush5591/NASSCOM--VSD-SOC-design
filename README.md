@@ -42,7 +42,7 @@ ultimately generating the GDSII file format, which contains the layout data.
 This meticulous process ensures the final IC layout accurately reflects the
 desired functionality and meets fabrication requirements
 
-![image](https://github.com/user-attachments/assets/2b5106fe-f87d-478c-83d8-332de757523e)
+![image](https://github.com/user-attachments/assets/d79f2d9a-2c62-402e-a3ce-5f9d428da5f6)
 
 ## Overview of QFN-48 Chip, Pads, Core, Die, and IPs
 
