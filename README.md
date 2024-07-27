@@ -168,11 +168,14 @@ The simplified RTL to GDS flow begins with an RTL file and, through a series of 
 ## Introduction to OpenLANE Detailed ASIC Design Flow
 
 The image illustrates the detailed ASIC design flow in OpenLANE. The process begins with the Design RTL, which undergoes RTL synthesis using Yosys and ABC to produce an optimized gate-level netlist. This netlist is then subjected to STA (Static Timing Analysis) to check for timing violations. Following STA, Design for Test (DFT) is performed, though this step is optional and uses the FAULT tool.
-![image](https://github.com/user-attachments/assets/deba3321-63fc-4c72-bfb6-bde3fbf1252d)
+![image](https://github.com/user-attachments/assets/6624ae33-7dc9-42a3-8ff2-de0f05e26d9a)
+
 
 OpenLane  started as an Open Source Flow for a true Open Source Tape-out experiment.It was from e-fabless.It is a platform which supports different tools such as Yosys,OpenRoad,Magic,KLlayout and some other Open source tools.It integrates the various steps of Silicon Implementation and abstracts it. At e-fabless they have an SOC family called Strive. Strive is a family of open everything SOCs having Open PDK, Open RTL, Open EDA.
 
-![image](https://github.com/user-attachments/assets/b900a2cb-938f-45d1-9d4a-00c5c65e6470)
+![image](https://github.com/user-attachments/assets/15f33eb2-03f1-48dc-ad43-fa16ac387ed1)
+
+
 
 
 FAULT (for DFT) includes:
@@ -183,7 +186,7 @@ FAULT (for DFT) includes:
    - Fault Coverage
    - Fault Simulation
 
-![image](https://github.com/user-attachments/assets/6552ef03-f1c7-4505-a2da-879d72a5cdc0)
+![image](https://github.com/user-attachments/assets/3d830380-96c0-4ea4-a66d-eeeb10eaa69f)
 
 
 After DFT, the next phase is Physical Implementation, also known as Automated Place and Route (PnR), using OpenRoad.
@@ -205,7 +208,7 @@ When a metal wire segment is fabricated, it can act as an antenna. Reactive ion 
 Solutions:
 
 Bridging: Attaching a higher layer intermediary, which requires router awareness.
-![image](https://github.com/user-attachments/assets/d9aecb06-f93a-4368-8840-481d9db0dd32)
+![image](https://github.com/user-attachments/assets/e6509251-5c4f-4758-b9a7-ad0ec863d3fc)
 
 
 Add antenna diode cell to leak away the charges. Antenna diodes are provided by the SCL. For this we took a preventive approach.
@@ -218,9 +221,7 @@ MAGIC is used for DRC and SPICE Extraction from Layout.
 
 MAGIC and Netgen are used for LVS by comparing Extracted SPICE by MAGIC and Verilog Netlist.
 
-![image](https://github.com/user-attachments/assets/67f6965a-71f0-4318-96e2-b4d0f49becce)
-
-
+![image](https://github.com/user-attachments/assets/bcf4a1d2-646c-4d56-b566-1a18683fabf1)
 
 
 
@@ -234,11 +235,11 @@ MAGIC and Netgen are used for LVS by comparing Extracted SPICE by MAGIC and Veri
 ## Day 1 Labs
 
 
-![image](https://github.com/user-attachments/assets/83c36b16-a82d-4753-ac05-775e303c6b90)
+![image](https://github.com/user-attachments/assets/1ea07fe3-48f7-43b1-a4f2-bc31c4293a21)
 
 
-![Screenshot from 2024-05-27 08-56-26](https://github.com/AnoushkaTripathi/NASSCOM-VSD-SoC-design-Program/assets/98522737/e1e4228b-42a1-48b1-bab2-0b202e482c84)
 
+![Screenshot from 27 ‎July ‎2024, ‏‎11:28:25](https://github.com/user-attachments/assets/36759026-d74d-4ec1-9f6a-3b9558126c4a)
 
 1.  Understanding the use of various linux commands
 
@@ -300,11 +301,13 @@ To prepare and setup the design
 
 
 
-![image](https://github.com/AnoushkaTripathi/NASSCOM-VSD-SoC-design-Program/assets/98522737/cb2fcb1f-989f-4f64-9713-9b8f94e23131)
+![2](https://github.com/user-attachments/assets/9451114f-9c26-4fa8-a257-a691b4659c70)
+
 
 Once the preparation is complete, a new directory with the current date will be generated within the “runs” folder. Inside this directory, all the necessary subdirectories for storing results, reports, and other relevant data will be created.
 
-![image](https://github.com/AnoushkaTripathi/NASSCOM-VSD-SoC-design-Program/assets/98522737/c2017d45-9c58-48ae-a670-95990cf51a81)
+![3a](https://github.com/user-attachments/assets/d0c948df-400a-42a8-9dc3-dcf34e1bafa4)
+![3b](https://github.com/user-attachments/assets/b9d58f9b-0d7e-4e25-b1fd-ee29c809f8c9)
 
 
 The preparation step involves the following actions for the picorv32a design within the openLANE flow:
@@ -320,7 +323,7 @@ The technology LEF (.tlef) and cell LEF (.lef) files are merged into a unified f
 All design-related files are placed under the designs directory.
 This ensures that the necessary files are organized and accessible during subsequent steps.
 
-![image](https://github.com/AnoushkaTripathi/NASSCOM-VSD-SoC-design-Program/assets/98522737/7fef32f0-2f61-4505-9f71-d4d457393105)
+![4](https://github.com/user-attachments/assets/df7d8160-dc29-4651-9f1e-f41a290ef4b2)
 
 
 | `config.tcl`	 | contains the configurations used by openLANE |                      
@@ -330,7 +333,26 @@ This ensures that the necessary files are organized and accessible during subseq
 
 
 
-![Screenshot from 2024-05-28 10-20-40](https://github.com/AnoushkaTripathi/NASSCOM-VSD-SoC-design-Program/assets/98522737/498fa493-f289-4241-ae6e-58ea967f12a6)
+![5](https://github.com/user-attachments/assets/ace18311-2ff7-46f6-a11f-237807aa5c97)
+
 
 ` Synthesis `
    % run_synthesis
+
+![6](https://github.com/user-attachments/assets/a4c313a6-93b7-499c-b3ee-ba9c75a46d1a)
+
+![7](https://github.com/user-attachments/assets/416360e5-5f8f-406b-ac75-38383fa5f56f)
+
+![8](https://github.com/user-attachments/assets/11b67f58-5740-4419-a2ae-4f25ca1db790)
+
+![9](https://github.com/user-attachments/assets/62d3982b-c5cb-4d4c-84cc-ea80716a3bd3)
+
+![10a](https://github.com/user-attachments/assets/f01634b2-5600-4265-a5bc-c0902bd238ba)
+
+![10b](https://github.com/user-attachments/assets/b56ed027-9000-4d8c-b2b6-d47f38402ae4)
+
+
+
+
+
+
