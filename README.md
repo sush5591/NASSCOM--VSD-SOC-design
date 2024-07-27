@@ -335,11 +335,10 @@ This ensures that the necessary files are organized and accessible during subseq
 
 ![5](https://github.com/user-attachments/assets/ace18311-2ff7-46f6-a11f-237807aa5c97)
 
+![6](https://github.com/user-attachments/assets/f04b325f-8b3f-46c0-81c5-fae33b599a33)
 
 ` Synthesis `
    % run_synthesis
-
-![6](https://github.com/user-attachments/assets/a4c313a6-93b7-499c-b3ee-ba9c75a46d1a)
 
 ![7](https://github.com/user-attachments/assets/416360e5-5f8f-406b-ac75-38383fa5f56f)
 
