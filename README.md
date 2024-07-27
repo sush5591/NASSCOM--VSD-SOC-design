@@ -279,10 +279,8 @@ MAGIC and Netgen are used for LVS by comparing Extracted SPICE by MAGIC and Veri
         pex: Parasitic Extraction files.
 
 
+![2](https://github.com/user-attachments/assets/8c9ff688-e6ab-4f96-8532-88cb757d2529)
 
-
-
-![Screenshot from 2024-05-28 10-58-19](https://github.com/AnoushkaTripathi/NASSCOM-VSD-SoC-design-Program/assets/98522737/7a59a63e-171f-42d0-8ba0-f3947915923e)
 
 To run in interactive mode (step by step mode)
 
@@ -300,15 +298,12 @@ To prepare and setup the design
     % prep -design picorv32a
 
 
-
-![2](https://github.com/user-attachments/assets/9451114f-9c26-4fa8-a257-a691b4659c70)
-
+![3a](https://github.com/user-attachments/assets/f5fbe8d5-a1a9-4b80-928e-79be10525605)
+![3b](https://github.com/user-attachments/assets/b9d58f9b-0d7e-4e25-b1fd-ee29c809f8c9)
 
 Once the preparation is complete, a new directory with the current date will be generated within the “runs” folder. Inside this directory, all the necessary subdirectories for storing results, reports, and other relevant data will be created.
 
-![3a](https://github.com/user-attachments/assets/d0c948df-400a-42a8-9dc3-dcf34e1bafa4)
-![3b](https://github.com/user-attachments/assets/b9d58f9b-0d7e-4e25-b1fd-ee29c809f8c9)
-
+![4](https://github.com/user-attachments/assets/df7d8160-dc29-4651-9f1e-f41a290ef4b2)
 
 The preparation step involves the following actions for the picorv32a design within the openLANE flow:
 
@@ -323,24 +318,21 @@ The technology LEF (.tlef) and cell LEF (.lef) files are merged into a unified f
 All design-related files are placed under the designs directory.
 This ensures that the necessary files are organized and accessible during subsequent steps.
 
-![4](https://github.com/user-attachments/assets/df7d8160-dc29-4651-9f1e-f41a290ef4b2)
-
+![5](https://github.com/user-attachments/assets/32ca3c89-8e11-42b0-b8fd-63a82c1847f1)
 
 | `config.tcl`	 | contains the configurations used by openLANE |                      
 | :-------- | :-------                                     | 
 | `src`      |  contains verilog files and constraints file|
 
 
+![6](https://github.com/user-attachments/assets/316e6f41-3ad8-449d-98a8-0745ccc9acf7)
 
 
-![5](https://github.com/user-attachments/assets/ace18311-2ff7-46f6-a11f-237807aa5c97)
-
-![6](https://github.com/user-attachments/assets/f04b325f-8b3f-46c0-81c5-fae33b599a33)
 
 ` Synthesis `
    % run_synthesis
 
-![7](https://github.com/user-attachments/assets/416360e5-5f8f-406b-ac75-38383fa5f56f)
+![7](https://github.com/user-attachments/assets/7019bdab-eb5f-4a81-9c5a-350d8ef7eaba)
 
 ![8](https://github.com/user-attachments/assets/11b67f58-5740-4419-a2ae-4f25ca1db790)
 
