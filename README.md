@@ -1,16 +1,5 @@
 # NASSCOM--VSD-SOC-design
 
-
-
-
-
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-
-
-
-![Logo](https://www.vlsisystemdesign.com/wp-content/uploads/2016/12/vsd_logo.jpg)
-
-
 # Digital VLSI SoC Design and planning Training
 
 Welcome to the OpenLane workshop! In this workshop, we will delve into the process of designing an Application Specific Integrated Circuit (ASIC) from the Register Transfer Level (RTL) to the Graphical Data System (GDS) file using the OpenLane ASIC flow. The flow is composed of several key steps, starting with an RTL file and culminating in a GDS file.
@@ -30,10 +19,7 @@ Identified the different views of cells (Liberty, HDL, SPICE, Layout).
 3. Floor and Power Planning:
 Understood the significance of floor planning in chip partitioning and I/O pad placement.
 
-
-
 ## Day 1
-
 
 The RTL to GDSII flow is a process in VLSI design that converts an RTL
 description of a digital circuit into a physical layout ready for fabrication. It
@@ -69,8 +55,6 @@ VSD Squadron Board: This is a VSD Board that you can see below. Here, we concent
 
    IO pads are the pins that act as the source of communication between core and the outside world. Pad cells surround the rectangular metal patches where external bonds are made. input,output and power pad.
 
-
-
 - IPs
 
     Foundary IPs are manually designed or need some human interference (or intelligence) essentially to define and create them like SRAM, ADC, DAC, PLLs.
@@ -81,8 +65,6 @@ VSD Squadron Board: This is a VSD Board that you can see below. Here, we concent
 ## Introduction to RISC-V
 ISA: ISA is known as "Instruction Set Architecture".It is merely a means of interacting with the computer. Generally speaking, we use coding languages like C, Java, and others to write programs that must be performed by the system, but machines are unable to comprehend these languages. Here's when ISA enters the picture. The written codes will be translated from assembly language to binary, or machine comprehensible language, using ISA. The RISC V ISA is the most recent ISA to be published, and it serves this purpose.
 ![image](https://github.com/user-attachments/assets/0eccb7a7-d0b7-4728-b28d-960b0f79be14)
-
-
 
 ## From Software Applications to Hardware
 
@@ -103,8 +85,7 @@ The system software is comprised of several layers:
 To design an open-source digital ASIC, several key components are required:
 ![image](https://github.com/user-attachments/assets/66a8e239-bb3d-4fc8-855b-b82dcd124b41)
 
-
-   - RTL Designs
+- RTL Designs
 - EDA Tools
 - PDK Data
 
@@ -119,7 +100,7 @@ What is PDK Data?
 PDK (Process Design Kit) is a set of files used to model a fabrication process for EDA tools during IC design. This kit includes:
 
   -  Process Design Rules: DRC (Design Rule Check), LVS (Layout Versus Schematic), PEX (Parasitic Extraction)
- Device Models
+Device Models
 Digital Standard Cell Libraries
 
  I/O Libraries
@@ -170,13 +151,9 @@ The simplified RTL to GDS flow begins with an RTL file and, through a series of 
 The image illustrates the detailed ASIC design flow in OpenLANE. The process begins with the Design RTL, which undergoes RTL synthesis using Yosys and ABC to produce an optimized gate-level netlist. This netlist is then subjected to STA (Static Timing Analysis) to check for timing violations. Following STA, Design for Test (DFT) is performed, though this step is optional and uses the FAULT tool.
 ![image](https://github.com/user-attachments/assets/6624ae33-7dc9-42a3-8ff2-de0f05e26d9a)
 
-
 OpenLane  started as an Open Source Flow for a true Open Source Tape-out experiment.It was from e-fabless.It is a platform which supports different tools such as Yosys,OpenRoad,Magic,KLlayout and some other Open source tools.It integrates the various steps of Silicon Implementation and abstracts it. At e-fabless they have an SOC family called Strive. Strive is a family of open everything SOCs having Open PDK, Open RTL, Open EDA.
 
 ![image](https://github.com/user-attachments/assets/15f33eb2-03f1-48dc-ad43-fa16ac387ed1)
-
-
-
 
 FAULT (for DFT) includes:
 
@@ -187,7 +164,6 @@ FAULT (for DFT) includes:
    - Fault Simulation
 
 ![image](https://github.com/user-attachments/assets/3d830380-96c0-4ea4-a66d-eeeb10eaa69f)
-
 
 After DFT, the next phase is Physical Implementation, also known as Automated Place and Route (PnR), using OpenRoad.
 
@@ -208,12 +184,11 @@ When a metal wire segment is fabricated, it can act as an antenna. Reactive ion 
 Solutions:
 
 Bridging: Attaching a higher layer intermediary, which requires router awareness.
-![image](https://github.com/user-attachments/assets/e6509251-5c4f-4758-b9a7-ad0ec863d3fc)
 
+![image](https://github.com/user-attachments/assets/e6509251-5c4f-4758-b9a7-ad0ec863d3fc)
 
 Add antenna diode cell to leak away the charges. Antenna diodes are provided by the SCL. For this we took a preventive approach.
 Add a Fake antenna didoe next to every cell input after placement.  Run the Antenna Checker(Magic) on the routed layout.If the checker reports violation on the cell input pin, replace the fake diode cell by a real one
-
 
 And at the end, we perform Physical Verification. Which includes DRC(Design Rule Checking) , LVS(Layout Vs Schematic). Along with the P.V we also performs STA to check for timing violations in the design.
 
@@ -223,43 +198,31 @@ MAGIC and Netgen are used for LVS by comparing Extracted SPICE by MAGIC and Veri
 
 ![image](https://github.com/user-attachments/assets/bcf4a1d2-646c-4d56-b566-1a18683fabf1)
 
-
-
-
-
 # RTL2GDS OpenLANE ASIC Flow Practical implementation
-
-
-
 
 ## Day 1 Labs
 
-
 ![image](https://github.com/user-attachments/assets/1ea07fe3-48f7-43b1-a4f2-bc31c4293a21)
-
-
 
 ![Screenshot from 27 ‎July ‎2024, ‏‎11:28:25](https://github.com/user-attachments/assets/36759026-d74d-4ec1-9f6a-3b9558126c4a)
 
 1.  Understanding the use of various linux commands
 
-  -  pwd : It displays the present working directory and its path.
+   - pwd : It displays the present working directory and its path.
 
    - cd : Using this command we can move in both ways in the directory tree.
 
-- ls : It lists all the sub-directories and files present in the current directory.
+   - ls : It lists all the sub-directories and files present in the current directory.
 
- - mkdir : Using this command, we can create a new directory.
+   - mkdir : Using this command, we can create a new directory.
 
-  -  rmdir : Using his command, we can delete an existing directory.
+   - rmdir : Using his command, we can delete an existing directory.
 
- -   rm : This command is used to delete the files.
+   - rm : This command is used to delete the files.
 
-  -  help : using this command we can know the working of any command.
+   - help : using this command we can know the working of any command.
 
    - clear : This command clears the terminal.
-
-
 
   Key Files and Directories:
 
@@ -278,14 +241,11 @@ MAGIC and Netgen are used for LVS by comparing Extracted SPICE by MAGIC and Veri
         lvs: Layout Versus Schematic check files.
         pex: Parasitic Extraction files.
 
-
 ![2](https://github.com/user-attachments/assets/8c9ff688-e6ab-4f96-8532-88cb757d2529)
-
 
 To run in interactive mode (step by step mode)
 
     bash-4.2$ ./flow.tcl -interactive
-    
     
 `Package import and check`
 
@@ -296,7 +256,6 @@ To run in interactive mode (step by step mode)
 To prepare and setup the design
 
     % prep -design picorv32a
-
 
 ![3a](https://github.com/user-attachments/assets/f5fbe8d5-a1a9-4b80-928e-79be10525605)
 ![3b](https://github.com/user-attachments/assets/b9d58f9b-0d7e-4e25-b1fd-ee29c809f8c9)
@@ -324,10 +283,7 @@ This ensures that the necessary files are organized and accessible during subseq
 | :-------- | :-------                                     | 
 | `src`      |  contains verilog files and constraints file|
 
-
 ![6](https://github.com/user-attachments/assets/316e6f41-3ad8-449d-98a8-0745ccc9acf7)
-
-
 
 ` Synthesis `
    % run_synthesis
@@ -341,9 +297,4 @@ This ensures that the necessary files are organized and accessible during subseq
 ![10a](https://github.com/user-attachments/assets/f01634b2-5600-4265-a5bc-c0902bd238ba)
 
 ![10b](https://github.com/user-attachments/assets/b56ed027-9000-4d8c-b2b6-d47f38402ae4)
-
-
-
-
-
 
