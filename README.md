@@ -989,4 +989,8 @@ In VLSI design, the routing process is divided into two main stages: global rout
 
 ## Links
 
+https://github.com/sush5591/NASSCOM--VSD-SOC-design
+
+https://www.linkedin.com/in/sushant-sukhadeo-gawade-59b60a84/
+
 
