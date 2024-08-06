@@ -1,4 +1,4 @@
-# NASSCOM--VSD-SOC-design
+![1 routing](https://github.com/user-attachments/assets/c7c53174-e29c-47aa-9941-417b7fd849f2)# NASSCOM--VSD-SOC-design
 
 # Digital VLSI SoC Design and planning Training
 
@@ -297,4 +297,696 @@ This ensures that the necessary files are organized and accessible during subseq
 ![10a](https://github.com/user-attachments/assets/f01634b2-5600-4265-a5bc-c0902bd238ba)
 
 ![10b](https://github.com/user-attachments/assets/b56ed027-9000-4d8c-b2b6-d47f38402ae4)
+
+________________________________________________________________________________________________________________________________________-
+________________________________________________________________________________________________________________________________________
+# Day 2
+
+## Good FloorPlan Vs Bad FloorPlan and Introduction to Library Cells
+Chip FloorPlanning Considerations
+
+![image](https://github.com/user-attachments/assets/62f54821-6e05-4d81-a313-66b59e680a19)
+
+
+Utilization Factor and Aspect Ratio
+In order to find out the Utilization Factor and Aspect Ratio, first we need to know how to define height and width of core and die areas.
+
+- Core is an area in a chip which is used to place all the logic cells and components in a chip. It is the place where logic lies in a chip.
+
+- Die is an area that encircles the core area and used for placing I/O related components.
+
+The height and width of core area will be decided by the netlist of the design. It will be based on the no.of components required in order to execute the logic and the height and width of the die area will be dependent on the core area height and width.
+
+![image](https://github.com/user-attachments/assets/54b83d76-d4ea-437b-b6f2-5ef16828d65d)
+
+For example, lets consider a netlist that is having two logic gates and two flipflops each having area of 1 sq.unit. The netlist contains 4 elements and the minimum total area required for the core area will be 4 sq.units.
+
+![image](https://github.com/user-attachments/assets/b87bd7e0-cc94-41bf-b56c-9f086af263c5)
+
+![image](https://github.com/user-attachments/assets/ecb63258-6ad9-4dcb-96d3-522e25df98f1)
+
+*Utilization Factor :*  Utilization Factor is defined as "The ratio of the core area occupied by the netlist to the total core area".For a good FloorPlan, The Utilization Factor should never be '1' because when the Utilization factor becomes '1' , there will be no place for adding additional logic if needed and it will be considered as a bad FloorPlan.
+
+
+`Utilization Factor = (Area occupied by netlist / Total core area)`
+
+*Aspect Ratio :*  Aspect Ratio is defined as "The ratio of Height of the core to the width of the core". If the Aspect ratio is '1' , then the core is said to be in a square shape and other than '1' the core will be a rectangle.
+
+`Aspect Ratio = (Height of the core / Width of the core)`
+
+![image](https://github.com/user-attachments/assets/7360a095-5469-40c8-88b3-06447bdb30c3)
+
+In this case, when calculated
+
+- Utilization factor = (4 squnits)/(4 squnits) = 1
+
+- Aspect Ratio = (2 units)/(2 units) = 1 //The core is in a square shape.
+
+![image](https://github.com/user-attachments/assets/951efc7d-ff16-4512-bfcb-612e1d67af21)
+
+In this case, when calculated
+
+- Utilization factor = (4 squnits)/(8 squnits) = 0.5
+
+- Aspect Ratio = (2 units)/(4 units) = 0.5 //The core is in a rectangular shape.
+
+
+# Day 2 Labs
+# Steps to run floorplan using OpenLANE
+
+![image](https://github.com/user-attachments/assets/57113e78-7302-4ee6-9c26-ab573eeb3d06)
+
+For Floorplan to run smoothly, as a designer we should take care of some switches, that makes changes to the floorplan when changed. For example Utilization factor and aspect ratio are also part of switches. Designer should cross check these switches before initializing floorplan whether they are alligned with the project or not. Below image shows different types of switches in floorplan stage.
+
+    % run_floorplan
+
+![1 floorplan_tcl](https://github.com/user-attachments/assets/b03d5433-6dfe-433e-ba93-3b0d96fa840c)
+
+![2 floorplan tcl file](https://github.com/user-attachments/assets/020f0c36-1514-4725-8952-55e652fcf8d5)
+
+![3 config_tcl](https://github.com/user-attachments/assets/4375ad78-494f-40ac-b54d-ccaca2a45bba)
+
+![4 floor results](https://github.com/user-attachments/assets/0fd425ed-2a52-4db8-823d-a06b6a18007e)
+
+![5 def file](https://github.com/user-attachments/assets/933ff44e-5ff0-46d5-8644-d0c4169e864a)
+
+ Once the floorplan is complete, you can review the generated report to assess aspects such as die area. However, to visualize the design in a graphical user interface (GUI), you should use the MAGIC tool.
+
+![6 magic](https://github.com/user-attachments/assets/91a025aa-96f0-4881-ac7a-c16251955a80)
+
+![7 magic](https://github.com/user-attachments/assets/aaf39941-2fcf-4a3b-822e-7913fc80013e)
+
+Review Floorplan layout in magic
+## Design Alignment Instructions
+
+### Centering the Design:
+1. Press `S` to select the entire design.
+2. Press `V` to vertically align it to the middle of the screen.
+
+### Zooming In on a Specific Area:
+1. Left-click and drag to select the desired region.
+2. Right-click to bring up the context menu.
+3. Press `Z` to zoom in on the selected area.
+
+### Getting Details of a Cell:
+1. Move your cursor to the cell of interest.
+2. Press `S` to select the cell.
+3. In the `tkcon` window, enter the command "what"  to display cell details.
+
+![8 metal layer](https://github.com/user-attachments/assets/ef10e706-a3ae-4595-9b31-d69e88233686)
+
+## Placement in VLSI Design
+
+Placement plays a crucial role in VLSI (Very Large Scale Integration) design. It involves determining the physical locations of standard cells or logic elements within a chip or block. Let's break it down:
+
+1. **Global Placement:**
+   - Global placement assigns general locations to movable objects (cells).
+   - Some overlaps between placed objects are allowed during this stage.
+   - The goal is to achieve a rough layout that satisfies area constraints.
+   - 
+![9 run placement](https://github.com/user-attachments/assets/3f14981f-fea7-4fb6-9510-089ebb46bc6d)
+
+2. **Detailed Placement:**
+   - Detailed placement refines the object locations obtained from global placement.
+   - It enforces non-overlapping constraints and ensures that cells are placed on legal cell sites.
+   - The quality of detailed placement significantly impacts subsequent routing stages.
+
+`magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &`
+![10 magic Placement](https://github.com/user-attachments/assets/822c04d8-ef5d-48be-8dae-1f817d37bdb7)
+
+![11 magic P](https://github.com/user-attachments/assets/23b6558f-27dc-4083-8511-d8e8c9dcb429)
+
+
+
+### Inputs
+| Item                    | Description                                                                                   |
+|-------------------------|-----------------------------------------------------------------------------------------------|
+| PDKs                    | Process Design Kits (PDKs) provide technology-specific information for chip design.          |
+| DRC and LVS rules       | Design Rule Check (DRC) and Layout vs. Schematic (LVS) rules ensure layout compliance.        |
+| SPICE models            | These models describe transistor behavior for circuit simulation.                             |
+| Library & User-defined specs | Custom libraries and specifications specific to your project.                                 |
+
+### Design Steps
+1. **Circuit Design:**
+   - Create the logical schematic of your circuit.
+   - Define the functionality and connections of standard cells.
+
+2. **Layout Design:**
+   - Use layout tools (e.g., MAGIC) to create the physical layout.
+   - Follow design rules and guidelines for placement and routing.
+
+3. **Characterization using GUNA:**
+   - Perform timing, power, and noise characterizations.
+   - Validate the design against specifications.
+
+### Outputs
+- **CDL (Circuit Description Language):** A textual representation of the circuit.
+- **GDSII:** The layout file in GDSII format for fabrication.
+- **LEF (Library Exchange Format):** Contains information about cell sizes, pin locations, and other details.
+- **Spice Extracted Netlist:** Includes parasitic information for circuit simulation.
+- **Timing, Noise, and Power Libraries:** Generated during characterization.
+
+
+## Day 3
+
+# Inverter Characterization using Sky130 Model Files
+
+## CMOS Inverter Simulation with ngspice
+
+This guide demonstrates how to create a basic CMOS inverter netlist, perform DC and transient analyses using ngspice, and understand key static and dynamic characteristics.
+
+## Static Characteristics
+
+1. **Switching Threshold (Vth):**
+   - The voltage at which the inverter transitions from the high state (logic 1) to the low state (logic 0).
+2. **Input Low Voltage (Vil):**
+   - The maximum input voltage considered as logic 0.
+3. **Input High Voltage (Vih):**
+   - The minimum input voltage considered as logic 1.
+4. **Output Low Voltage (Vol):**
+   - The voltage at which the output transitions from high to low.
+5. **Output High Voltage (Voh):**
+   - The voltage at which the output transitions from low to high.
+6. **Noise Margins:**
+   - The voltage range between Vil and Vol (low noise margin) and between Vih and Voh (high noise margin).
+
+## Dynamic Characteristics
+
+1. **Propagation Delays:**
+   - The time taken for the output to change after a change in input.
+2. **Rise Time (tr):**
+   - The time taken for the output to transition from Vol to Voh.
+3. **Fall Time (tf):**
+   - The time taken for the output to transition from Voh to Vol.
+
+
+
+# Design library cell using Magic Layout and ngspice characterization
+## Creating Standard Cell Layout
+
+1. **Design the Inverter Layout:**
+   - Use a layout tool (such as MAGIC) to create the inverter layout.
+   - Follow process-specific design rules and guidelines.
+   - Place standard cells (transistors, metal layers, etc.) based on the logical schematic.
+
+2. **Extraction Process:**
+   - After layout creation, extract parasitic capacitances and resistances.
+   - In the `tkcon` window, execute the command `extract all`.
+   - This generates an extracted file with parasitic information (e.g., capacitances, interconnect resistance).
+   - The extracted file is saved in the `vsdstdcelldesign` directory.
+
+3. **SPICE Netlist:**
+   - Use the extracted data to create a SPICE-compatible netlist (usually in `.sp` or `.cir` format).
+   - Include transistor models, capacitances, and resistances.
+   - Use this netlist for simulation in tools like ngspice.
+
+
+## Introduction to LEF Files in VLSI Design
+In VLSI (Very Large Scale Integration) design, LEF (Library Exchange Format) files play a crucial role in interfacing between layout tools and place-and-route (PnR) tools. Hereâ€™s what you need to know:
+
+Purpose of LEF Files:
+
+The entire layout information of a block (whether itâ€™s a macro or a standard cell) is not necessary for PnR tools.
+PnR tools require minimal information, including the PR boundary (bounding box) and pin positions.
+LEF files provide an abstract representation of the block, exposing only the essential details needed for PnR.
+
+
+
+| Cell LEF	 | Abstract view of the cell which holds information about PR boundary, pin positions and metal layer information.  |
+|---------------|---------------|
+| Technology LEF | Holds information about the metal layers, via, DRC technology used by placer and router.|
+
+![image](https://github.com/user-attachments/assets/9fa7c18f-dbd0-4d6f-95d5-67e532f93c5c)
+
+
+# VLSI Routing: Tracks and Routes
+
+In VLSI design, understanding tracks and routes is essential for successful interconnect design. Let's break it down:
+
+## Tracks
+
+- **Definition:**
+  - Tracks represent predefined horizontal and vertical paths on each metal layer.
+  - They serve as guidelines for routing wires (metal traces) within a chip.
+
+- **Purpose:**
+  - Tracks help maintain uniform spacing and alignment during routing.
+  - They simplify the routing process by providing fixed paths.
+
+## Routes
+
+- **Definition:**
+  - Routes are the actual metal traces that carry signals (such as interconnects or wires).
+  - These traces can be placed over the tracks, following specified routing rules.
+
+- **Functionality:**
+  - Routes connect different components (cells) within the chip.
+  - They form the wiring network for data flow.
+
+## `tracks.info` File
+
+- The `tracks.info` file:
+  - Provides information about horizontal and vertical tracks available on each metal layer.
+  - Specifies pitch, spacing, and other relevant details necessary for efficient routing.
+# Day 3 labs
+
+
+
+Magic layout view to cmos inverter
+To get the cell files refer  
+ [vsdstdcelldesign](https://github.com/nickson-jose/vsdstdcelldesign) 
+ 
+ ![1 clone](https://github.com/user-attachments/assets/1d82aca4-3616-4287-af07-e8c7e9978a41)
+
+ ![2 copy](https://github.com/user-attachments/assets/c10b6a20-f501-4a8d-a8e0-4e1ef6a8cdf7)
+
+ ![3 magic](https://github.com/user-attachments/assets/8affa364-3f0b-4d74-b23a-d48c75013c67)
+
+ ![4 inverter](https://github.com/user-attachments/assets/da9757df-31ea-4de1-b704-531ef6b137f7)
+
+
+To extract the parasitics and characterize the cell design use below commands in tkcon window.
+
+    extract all
+    ext2spice cthresh 0 rthresh 0
+    ext2spice
+
+![5 extract](https://github.com/user-attachments/assets/6e4eef97-a4d9-41cd-819a-6c8d2df10113)
+
+![6 ext file name](https://github.com/user-attachments/assets/d19bc9ce-9cf9-449b-8959-cd96a13f9712)
+
+
+Modify the file according to 
+
+![image](https://github.com/user-attachments/assets/f4c4bc49-30e1-49f3-8118-452d3f9d131c)
+
+![7 vim spice](https://github.com/user-attachments/assets/c2825f3f-8021-4cda-8f70-25e262152b1e)
+
+![8 spice file edited as per diagram](https://github.com/user-attachments/assets/6e1c100b-df7c-4715-bc8a-38f54aa78ad7)
+
+
+Now the next step is to run the SPICE file in ngspice tool by using command ngspice sky130_inv.spice
+
+![9 ngspice](https://github.com/user-attachments/assets/d5a7a37b-3364-484d-af6d-cb28a6f460aa)
+
+![10 plot](https://github.com/user-attachments/assets/efbffbe6-860f-490b-a33e-7a31be8dd065)
+
+
+# Inverter Characterization using Sky130 Model Files
+
+In this lab, we will characterize the inverter using ngspice and Sky130 model files. The goal is to extract key parameters from the simulation results.
+
+## Parameters to Characterize
+
+1. **Rise Time:**
+   - The time taken for the output waveform to transition from 20% to 80% of its maximum value.
+   - Using data points:
+     - x0 = 6.16138e-09, y0 = 0.660007
+     - x1 = 6.20366e-09, y1 = 2.64009
+   - Rise time = x1 - x0 = 0.0422 ns
+
+2. **Fall Time:**
+   - The time taken for the output waveform to transition from 80% to 20% of its maximum value.
+   - Using data points:
+     - x0 = 8.04034e-09, y0 = 2.64003
+     - x1 = 8.06818e-09, y1 = 0.659993
+   - Fall time = x1 - x0 = 0.0278 ns
+
+3. **Propagation Delay:**
+   - The time taken for a 50% transition at the output (0 to 1) corresponding to a 50% transition at the input (1 to 0).
+   - Using data points:
+     - x0 = 2.18449e-09, y0 = 1.64994
+     - x1 = 2.15e-09, y1 = 1.65011
+   - Propagation delay = x1 - x0 = 0.034 ns
+
+4. **Cell Fall Delay:**
+   - The time taken for a 50% transition at the output (1 to 0) corresponding to a 50% transition at the input (0 to 1).
+   - Using data points:
+     - x0 = 4.05432e-09, y0 = 1.65
+     - x1 = 4.05001e-09, y1 = 1.65
+   - Cell fall delay = x1 - x0 = 0.0043 ns
+
+## LEF File Creation
+Now that we have successfully characterized the inverter, the next step is to create a LEF (Library Exchange Format) file.
+
+
+wget http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz
+
+
+
+**VLSI Layout Geometries and DRC Errors**
+
+In this section, we explore independent example layout geometries (M3.1, M3.2, M3.5, and M3.6) and highlight the specific DRC (Design Rule Check) errors associated with each:
+
+1. **M3.1 (Metal Width DRC):**
+   - Violation: The metal trace width in M3.1 is below the specified minimum width threshold.
+   - Error: Metal width does not meet design rules.
+
+2. **M3.2 (Metal Spacing DRC):**
+   - Violation: The distance between adjacent metal traces in M3.2 does not meet the required spacing.
+   - Error: Metal spacing violation.
+
+3. **M3.5 (Via Overlapping DRC):**
+   - Violation: The vias in M3.5 overlap with each other.
+   - Error: Via overlapping issue.
+
+4. **M3.6 (Minimum Area DRC):**
+   - Violation: The enclosed area within M3.6 does not meet the specified minimum area requirement.
+   - Error: Minimum area violation.
+
+Use the command `magic -d XR` to open the Magic tool
+
+![11 drc files and contents](https://github.com/user-attachments/assets/b0d07132-1ad9-4f56-b926-468fd76fc6f0)
+
+# Using Magic Tool: Filling an Area with Metal 3 and Creating a VIA2 Mask
+
+In this guide, we'll demonstrate how to fill a selected area with metal 3 and create a VIA2 mask using the Magic layout tool.
+
+## Steps:
+
+1. **Select an Area and Fill with Metal 3:**
+   - Open the Magic GUI.
+   - Select the desired area on your layout.
+   - Guide the pointer to the metal 3 layer.
+   - Press `P` to fill the selected region with metal 3.
+
+2. **Create the VIA2 Mask:**
+   - Open the `tkcon` terminal within Magic.
+   - Type the command: `cif see VIA2`.
+   - The metal 3-filled area will now be associated with the VIA2 mask.
+
+
+![12 met3](https://github.com/user-attachments/assets/88fd82d7-bc22-4827-bf8e-703586d71cb8)
+
+## **Lab exercise to fix Poly-9 error in Sky130 tech file**
+
+![13 load poly](https://github.com/user-attachments/assets/06fcb110-844a-413c-bb08-23eeae757951)
+
+![14 poly](https://github.com/user-attachments/assets/a724c23a-9b7c-4b68-9e3b-1f2e40a90c8a)
+
+
+
+Commands to run in tkcon window
+
+     # Loading updated tech file
+       tech load sky130A.tech
+
+     # Must re-run drc check to see updated drc errors
+      drc check
+
+     # Selecting region displaying the new errors and getting the error messages 
+      drc why
+
+
+Incorrectly implemented difftap.2 simple rule correction
+
+![image](https://github.com/user-attachments/assets/de1702d8-7ffe-42ea-a99c-4eb80299358f)
+
+
+![image](https://github.com/user-attachments/assets/90d808cb-a60f-4018-a7a3-90b4220f55ec)
+
+
+## DRC error as geometrical construct
+
+N well rules 
+
+![image](https://github.com/user-attachments/assets/3df743de-76c7-464e-bc9e-463f1dbc2019)
+
+![15 nwell](https://github.com/user-attachments/assets/9431a2a3-2f95-43ff-81a4-49cf7393ac3a)
+
+
+# Day 4 : Pre-layout timing analysis and importance of good clock tree 
+
+# Timing Modeling Using Delay Tables and Converting Grid Info to Track Info
+
+In this section, we'll explore timing modeling using delay tables and the process of converting grid information to track information. Let's break it down step by step:
+
+## Timing Modeling with Delay Tables
+
+1. **Delay Tables:**
+   - Delay tables provide information about the delay (propagation time) of signals through various components (such as gates, wires, and interconnects).
+   - These tables help estimate signal arrival times and ensure proper timing in the design.
+
+2. **Usage:**
+   - During the physical design process, delay tables are used to model the behavior of standard cells, macros, and other components.
+   - They guide the placement and routing tools to optimize signal paths for timing closure.
+
+## Converting Grid Info to Track Info
+
+1. **Purpose:**
+   - In physical design, we need to convert grid information (such as rows and columns) into track information.
+   - Tracks represent predefined horizontal and vertical paths on each metal layer.
+
+2. **Considerations:**
+   - When designing standard cells, keep the following in mind:
+     - Input and output ports should align with the intersection of vertical and horizontal tracks.
+     - The standard cell's width should be an odd multiple of the track pitch, and its height should be an odd multiple of the vertical track pitch.
+
+3. **LEF File Extraction:**
+   - To proceed further, we require the LEF (Library Exchange Format) file for the Inverter cell.
+   - Extract it from the current Inverter cell to provide essential information for the place-and-route (PNR) process.
+
+4. **Understanding Tracks:**
+   - Open the `tracks.info` file to learn more about the horizontal and vertical tracks available on each metal layer.
+   - This file specifies pitch, spacing, and other relevant details necessary for efficient routing.
+
+
+# Day 4 Labs
+
+ Commands to open the custom inverter layout
+![1 tracks](https://github.com/user-attachments/assets/e3ec19b2-54bf-4177-894c-d9f03f569c61)
+
+
+    # Change directory to vsdstdcelldesign
+    cd Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign
+
+    # Command to open custom inverter layout in magic
+    magic -T sky130A.tech sky130_inv.mag &
+
+ Commands for tkcon window to set grid as tracks of locali layer
+
+    # Get syntax for grid command
+    help grid
+
+    # Set grid values accordingly
+    grid 0.46um 0.34um 0.23um 0.17um
+
+![2 grid](https://github.com/user-attachments/assets/f7868225-b4d4-4592-8af0-79b041136471)
+
+ **Save the finalized layout with custom name and open it.**
+
+    # Command to save as
+    save sky130_vsdinv.mag
+
+
+Generate lef from the layout.
+
+Command for tkcon window to write lef
+
+    # lef command
+    lef write
+
+![3 copy lef file](https://github.com/user-attachments/assets/dcd13249-de67-4d5f-908f-7d90b94c5312)
+
+
+![4 copied cell characterixation fie](https://github.com/user-attachments/assets/56fda176-7517-4101-b47d-9a6af130fe33)
+
+
+Edit 'config.tcl' to change lib file and add the new extra lef into the openlane flow.
+
+![image](https://github.com/user-attachments/assets/7e28f51e-c091-454b-a683-dbeb10ba07d4)
+
+![6 re design](https://github.com/user-attachments/assets/2b1d9e0e-36e8-4682-b93b-be1aea3476c5)
+
+     set ::env(LIB_SYNTH) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+
+     set ::env(LIB_FASTEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib"
+     set ::env(LIB_SLOWEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib" 
+
+     set ::env(LIB_TYPICAL) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+
+     set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/src/*.lef]
+
+**Run openlane flow synthesis with newly inserted custom inverter cell.**
+
+run_synthesis 
+
+![5 synthesis](https://github.com/user-attachments/assets/c961caff-21c5-4ad6-a9d3-ed3ecdeb49dd)
+
+Commands to view and change parameters to improve timing and run synthesis
+```
+# Now once again we have to prep design so as to update variables
+prep -design picorv32a -tag 24-03_10-03 -overwrite
+
+# Addiitional commands to include newly added lef to openlane flow merged.lef
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+
+# Command to display current value of variable SYNTH_STRATEGY
+echo $::env(SYNTH_STRATEGY)
+
+# Command to set new value for SYNTH_STRATEGY
+set ::env(SYNTH_STRATEGY) "DELAY 3"
+
+# Command to display current value of variable SYNTH_BUFFERING to check whether it's enabled
+echo $::env(SYNTH_BUFFERING)
+
+# Command to display current value of variable SYNTH_SIZING
+echo $::env(SYNTH_SIZING)
+
+# Command to set new value for SYNTH_SIZING
+set ::env(SYNTH_SIZING) 1
+
+# Command to display current value of variable SYNTH_DRIVING_CELL to check whether it's the proper cell or not
+echo $::env(SYNTH_DRIVING_CELL)
+
+
+# Now we are ready to run placement
+run_placement
+
+```
+![8 magic result](https://github.com/user-attachments/assets/abcf68bc-ac3c-4529-9f74-ce90ca69f262)
+
+![image](https://github.com/AnoushkaTripathi/NASSCOM-VSD-SoC-design-Program/assets/98522737/b7c8cdb1-5b2a-4216-b99e-119553f2bf75)
+
+
+```
+
+Do Post-Synthesis timing analysis with OpenSTA tool.
+
+Newly created pre_sta.conf for STA analysis in openlane directory
+
+![9 my base](https://github.com/user-attachments/assets/a0b024ea-4783-4a40-b7b0-98a3a359d96a)
+
+my_base.sdc
+
+
+![image](https://github.com/AnoushkaTripathi/NASSCOM-VSD-SoC-design-Program/assets/98522737/0b5679e3-85f4-409c-b4da-b456e8c83258)
+
+
+# Now once again we have to prep design so as to update variables
+prep -design picorv32a -tag 24-03_10-03 -overwrite
+
+# Addiitional commands to include newly added lef to openlane flow merged.lef
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+
+# Command to display current value of variable SYNTH_STRATEGY
+echo $::env(SYNTH_STRATEGY)
+
+# Command to set new value for SYNTH_STRATEGY
+set ::env(SYNTH_STRATEGY) "DELAY 3"
+
+# Command to display current value of variable SYNTH_BUFFERING to check whether it's enabled
+echo $::env(SYNTH_BUFFERING)
+
+# Command to display current value of variable SYNTH_SIZING
+echo $::env(SYNTH_SIZING)
+
+# Command to set new value for SYNTH_SIZING
+set ::env(SYNTH_SIZING) 1
+
+# Command to display current value of variable SYNTH_DRIVING_CELL to check whether it's the proper cell or not
+echo $::env(SYNTH_DRIVING_CELL)
+
+# Now that the design is prepped and ready, we can run synthesis using following command
+run_synthesis
+```
+
+![11 sta](https://github.com/user-attachments/assets/7a79357f-1a47-4785-8ff0-a9ecbcb9791e)
+
+![12 cts](https://github.com/user-attachments/assets/1825b62e-a9a7-48f6-ac3b-4aeab6b24ed8)
+
+Finally slack is met 
+
+
+**Now run Placement**
+
+![8 magic result](https://github.com/user-attachments/assets/710d0fb8-c00d-44fc-ad86-7349c36f2170)
+
+
+# Day 5 GDS II Final step
+
+## Power Distribution Network (PDN) Generation in OpenLANE
+
+In OpenLANE, the PDN (Power Distribution Network) is crucial for proper power delivery within the chip. Let's walk through the steps to build the PDN:
+
+## 1. PDN Generation
+
+- The PDN ensures that all standard cells and macros receive adequate power.
+- It provides a network of power rails (VDD and VSS) across the chip.
+
+## 2. Using `gen_pdn` Procedure
+
+- The `gen_pdn` procedure is responsible for running the PDN generation process.
+- It sets up the power grid, defines power rails, and ensures proper connectivity.
+
+## Common Issues
+
+1. **`LIB_SYNTH_COMPLETE`:**
+   - This variable must be defined in the `config.tcl` file.
+   - It is called by the `gen_pdn` procedure defined in the `or_pdn.tcl` file.
+
+2. **`LEF_MERGED_UNPADDED`:**
+   - Ensure that this variable is correctly set in the `config.tcl` file.
+   - It provides essential information for PDN generation.
+
+![8 magic result](https://github.com/user-attachments/assets/7700d7de-ae83-450c-b02d-183165dc1e9e)
+
+
+##Routing
+
+Command to perform routing
+```
+# Check value of 'CURRENT_DEF'
+echo $::env(CURRENT_DEF)
+
+# Check value of 'ROUTING_STRATEGY'
+echo $::env(ROUTING_STRATEGY)
+
+# Command for detailed route using TritonRoute
+run_routing
+```
+![1 routing](https://github.com/user-attachments/assets/5c975fb4-edd2-4826-a176-a1b622905ca0)
+
+
+Power Planning :
+
+![image](https://github.com/user-attachments/assets/27508f5c-736c-49b7-a15e-38490205c8a0)
+
+
+
+## VLSI Routing: Global Route and Detail Route
+
+In VLSI design, the routing process is divided into two main stages: global route (or fast route) and detail route. Let's explore each stage:
+
+## 1. Global Route (Fast Route)
+
+- **Purpose:**
+  - The global route focuses on quickly establishing a high-level routing solution.
+  - It divides the chip into rectangular grid cells, forming a 3D routing graph.
+
+- **Key Points:**
+  - The global route creates a routing guide, which consists of boxes (representing pins of cells).
+  - The output of the global route is a set of routing guides for each net.
+
+## 2. Detail Route
+
+- **Performed by Engine:**
+  - Detail route is executed by the engine called tritonRoute.
+  - It refines the routing solution obtained from the global route.
+
+- **Using Global Route Output:**
+  - Detail route utilizes the output from the global route, including the routing guides.
+  - Algorithms are applied to find the best possible connectivity among all the routing points.
+
+![image](https://github.com/user-attachments/assets/d32f97fc-b6a2-48e1-ac99-7cdd0571fbb1)
+
+![image](https://github.com/user-attachments/assets/1c7aac04-b778-4990-a6d3-4820da9f75af)
+
+
+
+
+## Links
+
 
