@@ -2,7 +2,7 @@
 
 # Digital VLSI SoC Design and planning Training
 
-Welcome to the OpenLane workshop! In this workshop, we will delve into the process of designing an Application Specific Integrated Circuit (ASIC) from the Register Transfer Level (RTL) to the Graphical Data System (GDS) file using the OpenLane ASIC flow. The flow is composed of several key steps, starting with an RTL file and culminating in a GDS file.
+Welcome to the OpenLane workshop! Throughout this session, we will explore the journey of creating an Application Specific Integrated Circuit (ASIC) using the OpenLane ASIC flow. This comprehensive process begins with an RTL file and progresses through multiple crucial stages, ultimately resulting in the creation of a GDS file.
 
 ## Lessons Learned
 
@@ -13,26 +13,21 @@ Recognized the importance of each step in the flow, from synthesis to sign-off.
 
 2. Synthesis:
 
-Learned how RTL is converted to a gate-level netlist using standard cell libraries.
-Identified the different views of cells (Liberty, HDL, SPICE, Layout).
+Understood the complete process of transforming a high-level hardware description into a physical ASIC layout.
+Appreciated the significance of each stage in the flow, from synthesis all the way to sign-off.
 
 3. Floor and Power Planning:
 Understood the significance of floor planning in chip partitioning and I/O pad placement.
 
 ## Day 1
 
-The RTL to GDSII flow is a process in VLSI design that converts an RTL
-description of a digital circuit into a physical layout ready for fabrication. It
-involves stages like RTL synthesis, floor planning, placement, routing, and
-ultimately generating the GDSII file format, which contains the layout data.
-This meticulous process ensures the final IC layout accurately reflects the
-desired functionality and meets fabrication requirements
+The RTL to GDSII flow in VLSI design is a critical process that translates an RTL description of a digital circuit into a physical layout suitable for fabrication. It encompasses key stages such as RTL synthesis, floor planning, placement, routing, and culminates in generating the GDSII file format, which encapsulates the layout data. This meticulous process ensures that the final IC layout faithfully represents the intended functionality and complies with fabrication standards.
 
 ![image](https://github.com/user-attachments/assets/d79f2d9a-2c62-402e-a3ce-5f9d428da5f6)
 
 ## Overview of QFN-48 Chip, Pads, Core, Die, and IPs
 
-VSD Squadron Board: This is a VSD Board that you can see below. Here, we concentrate more on the enclosed region, which houses the "Microprocessor," which we will use the RTL to GDS flow to design from the abstract level to the fabrication level.
+VSD Squadron Board: This board highlights a specific area dedicated to the "Microprocessor," where our focus lies. Using the RTL to GDS flow, we will meticulously design this microprocessor, transitioning it from the abstract RTL level to the finalized fabrication-ready layout.
 
 ![image](https://github.com/user-attachments/assets/ddf592ec-bee3-4064-9a63-c3ce953c2bed)
 
@@ -44,42 +39,38 @@ VSD Squadron Board: This is a VSD Board that you can see below. Here, we concent
 ![image](https://github.com/user-attachments/assets/e0b51f1a-aaf3-469f-be8a-3d63d6ff5983)
 
 - Core
-
-   A core is an area in the chip where the fundamental logic of the design is placed. It encapsulates all the combinational circuit, soft and hard IPs, and nets.
+   A core represents the central region within a chip where the fundamental logic of the design resides. It encompasses all the combinational circuits, both soft and hard Intellectual Properties (IPs), and the interconnecting nets essential for the chip's functionality.
 
 - Die
-
-   Die is an area of chip that encapsulates the core and IO pads. Die is imprinted multiple times along the silicon area or wafer to increase the throughput.
+   A die is a distinct area on a chip that includes the core logic and IO pads. Dies are replicated across the silicon wafer multiple times to enhance manufacturing efficiency and overall throughput.
 
 - IO Pads
-
-   IO pads are the pins that act as the source of communication between core and the outside world. Pad cells surround the rectangular metal patches where external bonds are made. input,output and power pad.
+  IO pads are pins that facilitate communication between the core and the external environment. Pad cells encircle the rectangular metal areas where external connections are established. These include input pads, output pads, and power pads.
 
 - IPs
-
-    Foundary IPs are manually designed or need some human interference (or intelligence) essentially to define and create them like SRAM, ADC, DAC, PLLs.
+    Foundry IPs, such as SRAM, ADC, DAC, and PLLs, are typically manually designed or require significant human involvement to define and create them.
+  
 - PDKs
-
-    PDKs are interface between foundary and design engineers. PDKs contains set of files to model fabrication process for the design tools used to design IC like device models, DRC, LVS, Physical extraction, layers, LEF, standard cell libraries, timing libraries etc. SkyWater 130nm is the PDK used in this workshop specifically sky130_fd_sc_hd and openLANE is built around this PDK.
+    PDKs (Process Design Kits) serve as the interface between foundries and design engineers. They consist of a set of files that model the fabrication process for the design tools used in IC design. These files include device models, DRC (Design Rule Checking), LVS (Layout Versus Schematic), physical extraction, layers, LEF (Library Exchange Format), standard cell libraries, timing libraries, and more. In this workshop, the SkyWater 130nm PDK, specifically sky130_fd_sc_hd, is used, and OpenLANE is built around this PDK.
 
 ## Introduction to RISC-V
-ISA: ISA is known as "Instruction Set Architecture".It is merely a means of interacting with the computer. Generally speaking, we use coding languages like C, Java, and others to write programs that must be performed by the system, but machines are unable to comprehend these languages. Here's when ISA enters the picture. The written codes will be translated from assembly language to binary, or machine comprehensible language, using ISA. The RISC V ISA is the most recent ISA to be published, and it serves this purpose.
+ISA (Instruction Set Architecture) is a method of interacting with the computer. Generally, we use coding languages like C, Java, and others to write programs that need to be executed by the system, but machines cannot understand these languages directly. This is where ISA comes into play. ISA translates written code from assembly language to binary, or machine-comprehensible language. The RISC-V ISA is the most recent ISA to be published, fulfilling this purpose.
 ![image](https://github.com/user-attachments/assets/0eccb7a7-d0b7-4728-b28d-960b0f79be14)
 
 ## From Software Applications to Hardware
 
-In real life, we typically interact with application software (apps) to communicate with hardware. But how does this process work exactly? Between the application software and the hardware, there is a layer called system software. The applications interface with the system software, which then translates them into a language the hardware can understand, namely binary language.
+In real life, we typically interact with application software to communicate with hardware. But how does this process work exactly? Between the application software and the hardware, there is a layer called system software. The applications interface with the system software, which then translates the instructions into a language the hardware can understand, namely binary language.
 
 The system software is comprised of several layers:
 ![image](https://github.com/user-attachments/assets/fa977d4d-8ea1-4a3f-9e3d-83d0fec3ad11)
 
 
-  -  Operating System (OS): In addition to general tasks like handling input/output operations, memory allocation, and low-level system functions, the OS translates application software into corresponding code in languages such as C, C++, or Java.
+   Operating System (OS): In addition to general tasks like handling input/output operations, memory allocation, and low-level system functions, the OS translates application software instructions into corresponding machine code, enabling the hardware to execute them. The OS also manages the execution of programs written in languages such as C, C++, or Java, providing an interface between the software and hardware.
 
-   - Compiler: The compiler takes the code produced by the OS and converts it into an instruction set (e.g., .exe files). These instructions are tailored to the specific type of hardware being used.
+   Compiler: The compiler takes the code written in high-level programming languages and converts it into an instruction set (e.g., .exe files). These instructions are tailored to the specific type of hardware being used, allowing the software to be executed efficiently by the hardware.
 
-   - Assembler: The assembler then converts these executable files into binary language, which the hardware can understand and execute to perform the desired operations.
-
+   Assembler: The assembler translates the assembly code generated by the compiler into binary language (machine code), which the hardware can understand and execute to perform the desired operations.
+   
 ##  OpenLane: Introduction to Components of Open-Source Digital ASIC Design
 
 To design an open-source digital ASIC, several key components are required:
@@ -91,17 +82,14 @@ To design an open-source digital ASIC, several key components are required:
 
 What are RTL Designs?
 
-RTL (Register-Transfer-Level) design is a critical phase in the VLSI design flow, focused on creating electronic circuits using integrated circuits (ICs). It specifies a digital circuit by describing the flow of digital signals between hardware registers and the logical operations performed on these signals.
-What are EDA Tools?
+EDA (Electronic Design Automation) tools are software applications used to design and develop electronic systems, such as integrated circuits (ICs) and printed circuit boards (PCBs). These tools assist in various stages of the design process, including:
 
-EDA (Electronic Design Automation) tools are software applications used to design and verify the functionality of integrated circuits (ICs). They ensure that the IC meets the required performance and density specifications.
-What is PDK Data?
-
-PDK (Process Design Kit) is a set of files used to model a fabrication process for EDA tools during IC design. This kit includes:
-
-  -  Process Design Rules: DRC (Design Rule Check), LVS (Layout Versus Schematic), PEX (Parasitic Extraction)
-Device Models
-Digital Standard Cell Libraries
+Schematic Capture: Creating and editing circuit diagrams.
+Simulation: Testing and verifying circuit behavior through virtual models.
+Layout Design: Arranging components on a PCB or IC layout.
+Verification: Ensuring the design meets specified requirements through techniques like DRC (Design Rule Checking) and LVS (Layout Versus Schematic).
+Synthesis: Converting high-level design descriptions into a lower-level representation that can be physically implemented.
+Overall, EDA tools help automate and streamline the design process, improving efficiency and accuracy in creating complex electronic systems.
 
  I/O Libraries
 
@@ -111,15 +99,14 @@ The simplified RTL to GDS flow begins with an RTL file and, through a series of 
 ![image](https://github.com/user-attachments/assets/9c20bdd1-48ab-4ba3-8e17-5938b2b61687)
 
     Synthesis:
-        The RTL file is converted into a circuit using components from the Standard Cell Library.
-        Standard Cells in the library have a regular layout with the same height but different widths.
-        Each cell has various models based on electrical, HDL, Spice, and layout (abstract and detailed) parameters.
+   The RTL (Register-Transfer-Level) file is converted into a physical circuit using components from the Standard Cell Library. Standard Cells in this library have a uniform height but vary in width, ensuring a regular and consistent layout. Each cell in the library is characterized by multiple models that include electrical properties, HDL (Hardware Description Language) specifications, Spice simulation parameters, and layout details (both abstract and detailed).
 
 ![image](https://github.com/user-attachments/assets/c5ac1b46-6839-4b57-9093-08cf0a212ef8)
 
     Floor Planning & Power Planning:
         Floor Planning: Determines the position of components on the chip to minimize area, including the placement of I/O pins, ports, and pads.
-        Power Planning: Designs the power supply network (VDD and GND) using power rings, power straps, and power pads, typically on the top metal layers for minimal resistance and delay.
+        Power Planning: Designs the power supply network (VDD and GND) using power rings, power straps, and power pads, typically on the top metal layers for minimal resistance and                              delay.
+        
 ![image](https://github.com/user-attachments/assets/be30a2a0-da92-44c8-9eba-30c838c889c4)
 
     Placement:
@@ -138,20 +125,22 @@ The simplified RTL to GDS flow begins with an RTL file and, through a series of 
     Routing:
         After clock routing, signal routing is performed using the remaining metal layers.
         Routing is divided into Global Routing (generates a routing guide based on PDK instructions) and Detailed Routing (actual routing according to the guide).
+        
 ![image](https://github.com/AnoushkaTripathi/NASSCOM-VSD-SoC-design-Program/assets/98522737/6aa48de1-e1b3-4752-b38a-e0b996cf4aae)
 
     Sign-off:
         Once routing is completed, the chip undergoes various checks during the sign-off stage:
-            Physical Verification Checks: Design Rule Check (DRC) and Layout vs. Schematic (LVS). DRC verifies design rule compliance, while LVS ensures functional correctness against the gate-level netlist.
+            Physical Verification Checks: Design Rule Check (DRC) and Layout vs. Schematic (LVS). DRC verifies design rule compliance, while LVS ensures functional correctness against 
+                                          the gate-level netlist.
             Timing Checks: Static Timing Analysis (STA) checks the design for timing violations.
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 ## Introduction to OpenLANE Detailed ASIC Design Flow
 
-The image illustrates the detailed ASIC design flow in OpenLANE. The process begins with the Design RTL, which undergoes RTL synthesis using Yosys and ABC to produce an optimized gate-level netlist. This netlist is then subjected to STA (Static Timing Analysis) to check for timing violations. Following STA, Design for Test (DFT) is performed, though this step is optional and uses the FAULT tool.
+The image illustrates the detailed ASIC design flow in OpenLANE. The process begins with the Design RTL, which undergoes RTL synthesis using Yosys and ABC to produce an optimized gate-level netlist. This netlist is then analyzed through STA (Static Timing Analysis) to check for timing violations. After STA, Design for Test (DFT) is performed—though this step is optional—and utilizes the FAULT tool.
 ![image](https://github.com/user-attachments/assets/6624ae33-7dc9-42a3-8ff2-de0f05e26d9a)
 
-OpenLane  started as an Open Source Flow for a true Open Source Tape-out experiment.It was from e-fabless.It is a platform which supports different tools such as Yosys,OpenRoad,Magic,KLlayout and some other Open source tools.It integrates the various steps of Silicon Implementation and abstracts it. At e-fabless they have an SOC family called Strive. Strive is a family of open everything SOCs having Open PDK, Open RTL, Open EDA.
+OpenLane started as an open-source flow for a true open-source tape-out experiment, initiated by e-fabless. It is a platform that supports various tools such as Yosys, OpenRoad, Magic, KLayout, and other open-source tools. OpenLane integrates and abstracts the different steps of silicon implementation. At e-fabless, they have an SOC family called Strive, which encompasses open-source elements, including Open PDK, Open RTL, and Open EDA.
 
 ![image](https://github.com/user-attachments/assets/15f33eb2-03f1-48dc-ad43-fa16ac387ed1)
 
@@ -224,23 +213,6 @@ MAGIC and Netgen are used for LVS by comparing Extracted SPICE by MAGIC and Veri
 
    - clear : This command clears the terminal.
 
-  Key Files and Directories:
-
-    libs.ref: Houses the design libraries, including standard cells, IO cells, and other related files.
-        lef: Library Exchange Format files describing the cell layouts.
-        lib: Liberty files for timing and power analysis.
-        gds: GDSII files containing the graphical layout of the cells.
-        verilog: Verilog models of the cells.
-
-    libs.tech: Contains technology files tailored for specific EDA tools.
-        magic: Magic technology files.
-        klayout: KLayout technology files and layer properties.
-        ngspice: SPICE models for circuit simulation.
-        openroad: Files for OpenROAD flow.
-        drc: Design Rule Check files.
-        lvs: Layout Versus Schematic check files.
-        pex: Parasitic Extraction files.
-
 ![2](https://github.com/user-attachments/assets/8c9ff688-e6ab-4f96-8532-88cb757d2529)
 
 To run in interactive mode (step by step mode)
@@ -298,8 +270,7 @@ This ensures that the necessary files are organized and accessible during subseq
 
 ![10b](https://github.com/user-attachments/assets/b56ed027-9000-4d8c-b2b6-d47f38402ae4)
 
-________________________________________________________________________________________________________________________________________-
-________________________________________________________________________________________________________________________________________
+
 # Day 2
 
 ## Good FloorPlan Vs Bad FloorPlan and Introduction to Library Cells
@@ -315,7 +286,7 @@ In order to find out the Utilization Factor and Aspect Ratio, first we need to k
 
 - Die is an area that encircles the core area and used for placing I/O related components.
 
-The height and width of core area will be decided by the netlist of the design. It will be based on the no.of components required in order to execute the logic and the height and width of the die area will be dependent on the core area height and width.
+The height and width of the core area are determined by the netlist of the design, which specifies the number of components needed to implement the logic. The dimensions of the die area will then be based on the height and width of the core area, reflecting the overall size requirements to accommodate the design.
 
 ![image](https://github.com/user-attachments/assets/54b83d76-d4ea-437b-b6f2-5ef16828d65d)
 
@@ -356,7 +327,7 @@ In this case, when calculated
 
 ![image](https://github.com/user-attachments/assets/57113e78-7302-4ee6-9c26-ab573eeb3d06)
 
-For Floorplan to run smoothly, as a designer we should take care of some switches, that makes changes to the floorplan when changed. For example Utilization factor and aspect ratio are also part of switches. Designer should cross check these switches before initializing floorplan whether they are alligned with the project or not. Below image shows different types of switches in floorplan stage.
+For a smooth floorplan process, designers need to manage certain switches that influence the floorplan configuration. For example, switches such as the utilization factor and aspect ratio play a role in determining the floorplan's dimensions and layout. Designers should carefully review these switches to ensure they align with the project's requirements before initializing the floorplan. The image below illustrates the various types of switches used in the floorplan stage.
 
     % run_floorplan
 
@@ -412,10 +383,10 @@ Placement plays a crucial role in VLSI (Very Large Scale Integration) design. It
    - The quality of detailed placement significantly impacts subsequent routing stages.
 
 `magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &`
+
 ![10 magic Placement](https://github.com/user-attachments/assets/822c04d8-ef5d-48be-8dae-1f817d37bdb7)
 
 ![11 magic P](https://github.com/user-attachments/assets/23b6558f-27dc-4083-8511-d8e8c9dcb429)
-
 
 
 ### Inputs
@@ -457,18 +428,25 @@ This guide demonstrates how to create a basic CMOS inverter netlist, perform DC 
 
 ## Static Characteristics
 
-1. **Switching Threshold (Vth):**
-   - The voltage at which the inverter transitions from the high state (logic 1) to the low state (logic 0).
-2. **Input Low Voltage (Vil):**
-   - The maximum input voltage considered as logic 0.
-3. **Input High Voltage (Vih):**
-   - The minimum input voltage considered as logic 1.
-4. **Output Low Voltage (Vol):**
-   - The voltage at which the output transitions from high to low.
-5. **Output High Voltage (Voh):**
-   - The voltage at which the output transitions from low to high.
-6. **Noise Margins:**
-   - The voltage range between Vil and Vol (low noise margin) and between Vih and Voh (high noise margin).
+Certainly! Here’s a table detailing the characteristics of a CMOS inverter, including noise margin:
+
+| **Characteristic**         | **Details**                                                |
+|----------------------------|------------------------------------------------------------|
+| **Transistor Types**       | PMOS and NMOS                                              |
+| **Power Supply Voltage (Vdd)** | Typical values: 1.8V, 3.3V, 5V                           |
+| **Input Voltage (Vin)**    | 0V to Vdd                                                  |
+| **Output Voltage (Vout)**   | 0V to Vdd                                                  |
+| **Threshold Voltage (Vth)** | NMOS: ~0.2V to 0.5V, PMOS: ~-0.2V to -0.5V                |
+| **Static Power Consumption** | Very low, ideally near zero (minimal leakage currents)    |
+| **Dynamic Power Consumption** | \( P_{dynamic} = \frac{1}{2} C_{load} V_{dd}^2 f_{clk} \) |
+| **Input-Output Characteristics** | Inverter transfer characteristic curve: shows the relationship between Vin and Vout |
+| **Propagation Delay**      | Time taken for the output to change state in response to a change in input, affected by load capacitance and drive strength |
+| **Noise Margin**           | **NM_H** (High Noise Margin): \( NM_H = V_{OH} - V_{IH} \) <br> **NM_L** (Low Noise Margin): \( NM_L = V_{IL} - V_{OL} \) <br> Where: <br> - \( V_{OH} \) = Output High Voltage <br> - \( V_{OL} \) = Output Low Voltage <br> - \( V_{IH} \) = Input High Voltage <br> - \( V_{IL} \) = Input Low Voltage |
+| **Power Gain**             | Typically less than 1, but provides strong drive capabilities |
+| **Switching Speed**        | Depends on transistor sizes and supply voltage; generally faster with larger transistors and higher Vdd |
+| **Load Driving Capability** | Strong drive capability; can drive other gates and large capacitive loads |
+
+This table includes noise margin characteristics, which are crucial for understanding how much noise the inverter can tolerate before its output is affected.
 
 ## Dynamic Characteristics
 
@@ -478,7 +456,6 @@ This guide demonstrates how to create a basic CMOS inverter netlist, perform DC 
    - The time taken for the output to transition from Vol to Voh.
 3. **Fall Time (tf):**
    - The time taken for the output to transition from Voh to Vol.
-
 
 
 # Design library cell using Magic Layout and ngspice characterization
@@ -548,12 +525,13 @@ In VLSI design, understanding tracks and routes is essential for successful inte
 - The `tracks.info` file:
   - Provides information about horizontal and vertical tracks available on each metal layer.
   - Specifies pitch, spacing, and other relevant details necessary for efficient routing.
+
+    
 # Day 3 labs
-
-
 
 Magic layout view to cmos inverter
 To get the cell files refer  
+
  [vsdstdcelldesign](https://github.com/nickson-jose/vsdstdcelldesign) 
  
  ![1 clone](https://github.com/user-attachments/assets/1d82aca4-3616-4287-af07-e8c7e9978a41)
@@ -598,61 +576,63 @@ In this lab, we will characterize the inverter using ngspice and Sky130 model fi
 
 ## Parameters to Characterize
 
-1. **Rise Time:**
-   - The time taken for the output waveform to transition from 20% to 80% of its maximum value.
-   - Using data points:
-     - x0 = 6.16138e-09, y0 = 0.660007
-     - x1 = 6.20366e-09, y1 = 2.64009
-   - Rise time = x1 - x0 = 0.0422 ns
+Certainly! Here’s the modified table format with updated values:
 
-2. **Fall Time:**
-   - The time taken for the output waveform to transition from 80% to 20% of its maximum value.
-   - Using data points:
-     - x0 = 8.04034e-09, y0 = 2.64003
-     - x1 = 8.06818e-09, y1 = 0.659993
-   - Fall time = x1 - x0 = 0.0278 ns
-
-3. **Propagation Delay:**
-   - The time taken for a 50% transition at the output (0 to 1) corresponding to a 50% transition at the input (1 to 0).
-   - Using data points:
-     - x0 = 2.18449e-09, y0 = 1.64994
-     - x1 = 2.15e-09, y1 = 1.65011
-   - Propagation delay = x1 - x0 = 0.034 ns
-
-4. **Cell Fall Delay:**
-   - The time taken for a 50% transition at the output (1 to 0) corresponding to a 50% transition at the input (0 to 1).
-   - Using data points:
-     - x0 = 4.05432e-09, y0 = 1.65
-     - x1 = 4.05001e-09, y1 = 1.65
-   - Cell fall delay = x1 - x0 = 0.0043 ns
+| **Characteristic**       | **Details**                                                                                       |
+|--------------------------|---------------------------------------------------------------------------------------------------|
+| **Rise Time**            | The time taken for the output waveform to transition from 20% to 80% of its maximum value.       |
+|                          | - Data points: <br> \( x_0 = 6.15238 \times 10^{-9} \) s, \( y_0 = 0.660007 \) <br> \( x_1 = 6.20366 \times 10^{-9} \) s, \( y_1 = 2.64009 \) <br> Rise time = \( x_1 - x_0 = 0.0423 \) ns  |
+| **Fall Time**            | The time taken for the output waveform to transition from 80% to 20% of its maximum value.       |
+|                          | - Data points: <br> \( x_0 = 8.04034 \times 10^{-9} \) s, \( y_0 = 2.64003 \) <br> \( x_1 = 8.06818 \times 10^{-9} \) s, \( y_1 = 0.659993 \) <br> Fall time = \( x_1 - x_0 = 0.0278 \) ns |
+| **Propagation Delay**    | The time taken for a 50% transition at the output (0 to 1) corresponding to a 50% transition at the input (1 to 0). |
+|                          | - Data points: <br> \( x_0 = 2.18449 \times 10^{-9} \) s, \( y_0 = 1.64994 \) <br> \( x_1 = 2.15000 \times 10^{-9} \) s, \( y_1 = 1.65011 \) <br> Propagation delay = \( x_1 - x_0 = 0.0345 \) ns |
+| **Cell Fall Delay**      | The time taken for a 50% transition at the output (1 to 0) corresponding to a 50% transition at the input (0 to 1). |
+|                          | - Data points: <br> \( x_0 = 4.05432 \times 10^{-9} \) s, \( y_0 = 1.65 \) <br> \( x_1 = 4.05001 \times 10^{-9} \) s, \( y_1 = 1.65 \) <br> Cell fall delay = \( x_1 - x_0 = 0.0043 \) ns |
 
 ## LEF File Creation
 Now that we have successfully characterized the inverter, the next step is to create a LEF (Library Exchange Format) file.
 
-
 wget http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz
-
-
 
 **VLSI Layout Geometries and DRC Errors**
 
 In this section, we explore independent example layout geometries (M3.1, M3.2, M3.5, and M3.6) and highlight the specific DRC (Design Rule Check) errors associated with each:
 
-1. **M3.1 (Metal Width DRC):**
-   - Violation: The metal trace width in M3.1 is below the specified minimum width threshold.
-   - Error: Metal width does not meet design rules.
+1. Certainly! Here’s the information formatted in blocks:
 
-2. **M3.2 (Metal Spacing DRC):**
-   - Violation: The distance between adjacent metal traces in M3.2 does not meet the required spacing.
-   - Error: Metal spacing violation.
+---
 
-3. **M3.5 (Via Overlapping DRC):**
-   - Violation: The vias in M3.5 overlap with each other.
-   - Error: Via overlapping issue.
+### M3.1 (Metal Width DRC)
+- **Violation:** 
+  - The metal trace width in M3.1 is below the specified minimum width threshold.
+- **Error:** 
+  - Metal width does not meet design rules.
 
-4. **M3.6 (Minimum Area DRC):**
-   - Violation: The enclosed area within M3.6 does not meet the specified minimum area requirement.
-   - Error: Minimum area violation.
+---
+
+### M3.2 (Metal Spacing DRC)
+- **Violation:** 
+  - The distance between adjacent metal traces in M3.2 does not meet the required spacing.
+- **Error:** 
+  - Metal spacing violation.
+
+---
+
+### M3.5 (Via Overlapping DRC)
+- **Violation:** 
+  - The vias in M3.5 overlap with each other.
+- **Error:** 
+  - Via overlapping issue.
+
+---
+
+### M3.6 (Minimum Area DRC)
+- **Violation:** 
+  - The enclosed area within M3.6 does not meet the specified minimum area requirement.
+- **Error:** 
+  - Minimum area violation.
+
+---
 
 Use the command `magic -d XR` to open the Magic tool
 
@@ -683,7 +663,6 @@ In this guide, we'll demonstrate how to fill a selected area with metal 3 and cr
 ![13 load poly](https://github.com/user-attachments/assets/06fcb110-844a-413c-bb08-23eeae757951)
 
 ![14 poly](https://github.com/user-attachments/assets/a724c23a-9b7c-4b68-9e3b-1f2e40a90c8a)
-
 
 
 Commands to run in tkcon window
@@ -723,33 +702,23 @@ In this section, we'll explore timing modeling using delay tables and the proces
 
 ## Timing Modeling with Delay Tables
 
-1. **Delay Tables:**
-   - Delay tables provide information about the delay (propagation time) of signals through various components (such as gates, wires, and interconnects).
-   - These tables help estimate signal arrival times and ensure proper timing in the design.
+Certainly! Here’s the information in table format:
 
-2. **Usage:**
-   - During the physical design process, delay tables are used to model the behavior of standard cells, macros, and other components.
-   - They guide the placement and routing tools to optimize signal paths for timing closure.
+| **Category** | **Details**                                                                                           |
+|--------------|-------------------------------------------------------------------------------------------------------|
+| **Delay Tables** | - **Description:** Provide information about the delay (propagation time) of signals through various components (such as gates, wires, and interconnects). <br> - **Purpose:** Help estimate signal arrival times and ensure proper timing in the design. |
+| **Usage**    | - **Context:** Used during the physical design process to model the behavior of standard cells, macros, and other components. <br> - **Function:** Guide the placement and routing tools to optimize signal paths for timing closure. |
 
 ## Converting Grid Info to Track Info
 
-1. **Purpose:**
-   - In physical design, we need to convert grid information (such as rows and columns) into track information.
-   - Tracks represent predefined horizontal and vertical paths on each metal layer.
+Here’s the information formatted in a table:
 
-2. **Considerations:**
-   - When designing standard cells, keep the following in mind:
-     - Input and output ports should align with the intersection of vertical and horizontal tracks.
-     - The standard cell's width should be an odd multiple of the track pitch, and its height should be an odd multiple of the vertical track pitch.
-
-3. **LEF File Extraction:**
-   - To proceed further, we require the LEF (Library Exchange Format) file for the Inverter cell.
-   - Extract it from the current Inverter cell to provide essential information for the place-and-route (PNR) process.
-
-4. **Understanding Tracks:**
-   - Open the `tracks.info` file to learn more about the horizontal and vertical tracks available on each metal layer.
-   - This file specifies pitch, spacing, and other relevant details necessary for efficient routing.
-
+| **Category**         | **Details**                                                                                                           |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------|
+| **Purpose**          | - **Objective:** Convert grid information (rows and columns) into track information. <br> - **Definition:** Tracks represent predefined horizontal and vertical paths on each metal layer. |
+| **Considerations**   | - **Alignment:** Input and output ports should align with the intersection of vertical and horizontal tracks. <br> - **Dimensions:** The standard cell's width should be an odd multiple of the track pitch, and its height should be an odd multiple of the vertical track pitch. |
+| **LEF File Extraction** | - **Requirement:** Extract the LEF (Library Exchange Format) file for the Inverter cell. <br> - **Purpose:** Provides essential information for the place-and-route (PNR) process. |
+| **Understanding Tracks** | - **File:** Open the `tracks.info` file. <br> - **Contents:** Learn about the horizontal and vertical tracks available on each metal layer, including pitch, spacing, and other relevant details necessary for efficient routing. 
 
 # Day 4 Labs
 
