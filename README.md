@@ -1,4 +1,4 @@
-![1 routing](https://github.com/user-attachments/assets/c7c53174-e29c-47aa-9941-417b7fd849f2)# NASSCOM--VSD-SOC-design
+# NASSCOM--VSD-SOC-design
 
 # Digital VLSI SoC Design and planning Training
 
