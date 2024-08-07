@@ -1,7 +1,43 @@
 # NASSCOM--VSD-SOC-design
-
 - [Lessons Leaanred](#LessonsLearned)
-- [Reference Circuit Diagram](#reference-circuit-diagram)
+- [Day 1](#Day1)
+- [Overview of QFN-48 Chip, Pads, Core, Die, and IPs](#OverviewofQFN-48Chip,Pads,Core,Die,andIPs)
+- [Introduction to IC Design components and terminologies](#IntroductiontoICDesigncomponentsandterminologies)
+- [Introduction to RISC-V](#IntroductiontoRISC-V)
+- [From Software Applications to Hardware](#FromSoftwareApplicationstoHardware)
+- [OpenLane: Introduction to Components of Open-Source Digital ASIC Design](#OpenLane:IntroductiontoComponentsofOpen-SourceDigitalASICDesign)
+- [Simplified RTL to GDS Flow](#SimplifiedRTLtoGDSFlow)
+- [Introduction to OpenLANE Detailed ASIC Design Flow](#IntroductiontoOpenLANEDetailedASICDesignFlow)
+- [Day 1 Labs](#Day1Labs)
+- [Day 2](#Day2)
+- [Good FloorPlan Vs Bad FloorPlan and Introduction to Library Cells](#GoodFloorPlanVsBadFloorPlanandIntroductiontoLibraryCells)
+- [Steps to run floorplan using OpenLANE](#StepstorunfloorplanusingOpenLANE)
+- [Design Alignment Instructions](#Design Alignment Instructions)
+- [Placement in VLSI Design](#PlacementinVLSIDesign)
+- [Day 3](#Day3)
+- [CMOS Inverter Simulation with ngspice](#CMOSInverterSimulationwithngspice)
+- [StaticCharacteristics](#StaticCharacteristics)
+- [Dynamic Characteristics](#DynamicCharacteristics)
+- [Creating Standard Cell Layout](#CreatingStandardCellLayout)
+- [Introduction to LEF Files in VLSI Design](#IntroductiontoLEFFilesinVLSIDesign)
+- [Tracks](#Tracks)
+- [Routes](#Routes)
+- [`tracks.info` File](#`tracks.info`File)
+- [Day 3 labs](#Day3labs)
+- [LEF File Creation](#LEF File Creation)
+- [**Lab exercise to fix Poly-9 error in Sky130 tech file**](#**LabexercisetofixPoly-9errorinSky130techfile**)
+- [Day 1](#Day1)
+- [Day 1](#Day1)
+- [Day 1](#Day1)
+- [Day 1](#Day1)
+- [Day 1](#Day1)
+- [Day 1](#Day1)
+- [Day 1](#Day1)
+- [Day 1](#Day1)
+- [Day 1](#Day1)
+- [Day 1](#Day1)
+- [Day 1](#Day1)
+- [Day 1](#Day1)
 
 # Digital VLSI SoC Design and planning Training
 
@@ -137,7 +173,6 @@ The simplified RTL to GDS flow begins with an RTL file and, through a series of 
                                           the gate-level netlist.
             Timing Checks: Static Timing Analysis (STA) checks the design for timing violations.
 
------------------------------------------------------------------------------------------------------------------------------------------
 ## Introduction to OpenLANE Detailed ASIC Design Flow
 
 The image illustrates the detailed ASIC design flow in OpenLANE. The process begins with the Design RTL, which undergoes RTL synthesis using Yosys and ABC to produce an optimized gate-level netlist. This netlist is then analyzed through STA (Static Timing Analysis) to check for timing violations. After STA, Design for Test (DFT) is performed—though this step is optional—and utilizes the FAULT tool.
@@ -196,9 +231,6 @@ MAGIC and Netgen are used for LVS by comparing Extracted SPICE by MAGIC and Veri
 
 ![image](https://github.com/user-attachments/assets/a4b0c98b-4f08-43a2-91b3-b35be88aa99d)
 ![image](https://github.com/user-attachments/assets/3f65e488-78d1-4575-a72e-0afae9e425c4)
-
-
-
 
 ![Screenshot from 27 ‎July ‎2024, ‏‎11:28:25](https://github.com/user-attachments/assets/36759026-d74d-4ec1-9f6a-3b9558126c4a)
 
@@ -278,7 +310,7 @@ This ensures that the necessary files are organized and accessible during subseq
 ![10b](https://github.com/user-attachments/assets/b56ed027-9000-4d8c-b2b6-d47f38402ae4)
 
 
-# Day 2
+## Day 2
 
 ## Good FloorPlan Vs Bad FloorPlan and Introduction to Library Cells
 Chip FloorPlanning Considerations
@@ -330,7 +362,7 @@ In this case, when calculated
 
 
 # Day 2 Labs
-# Steps to run floorplan using OpenLANE
+## Steps to run floorplan using OpenLANE
 
 ![image](https://github.com/user-attachments/assets/b218a695-0880-47ea-9f7e-ae00fa6a9bf8)
 ![image](https://github.com/user-attachments/assets/b6a3b0fa-a2ac-405d-995b-61c29fc7dee3)
@@ -535,7 +567,7 @@ In VLSI design, understanding tracks and routes is essential for successful inte
   - Specifies pitch, spacing, and other relevant details necessary for efficient routing.
 
     
-# Day 3 labs
+## Day 3 labs
 
 Magic layout view to cmos inverter
 To get the cell files refer  
@@ -713,7 +745,7 @@ Here’s the information formatted in a table:
 | **LEF File Extraction** | - **Requirement:** Extract the LEF (Library Exchange Format) file for the Inverter cell. <br> - **Purpose:** Provides essential information for the place-and-route (PNR) process. |
 | **Understanding Tracks** | - **File:** Open the `tracks.info` file. <br> - **Contents:** Learn about the horizontal and vertical tracks available on each metal layer, including pitch, spacing, and other relevant details necessary for efficient routing. 
 
-# Day 4 Labs
+## Day 4 Labs
 
  Commands to open the custom inverter layout
 ![1 tracks](https://github.com/user-attachments/assets/e3ec19b2-54bf-4177-894c-d9f03f569c61)
@@ -867,7 +899,7 @@ Finally slack is met
 ![8 magic result](https://github.com/user-attachments/assets/710d0fb8-c00d-44fc-ad86-7349c36f2170)
 
 
-# Day 5 GDS II Final step
+## Day 5 GDS II Final step
 
 ## Power Distribution Network (PDN) Generation in OpenLANE
 
@@ -945,8 +977,6 @@ In VLSI design, the routing process is divided into two main stages: global rout
 ![image](https://github.com/user-attachments/assets/d32f97fc-b6a2-48e1-ac99-7cdd0571fbb1)
 
 ![image](https://github.com/user-attachments/assets/1c7aac04-b778-4990-a6d3-4820da9f75af)
-
-
 
 
 ## Links
