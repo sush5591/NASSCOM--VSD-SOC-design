@@ -33,7 +33,7 @@
 - [Power Distribution Network (PDN) Generation in OpenLANE](#PowerDistributionNetwork(PDN)GenerationinOpenLANE)
 - [PDN Generation](#PDNGeneration)
 - [Routing](#Routing)
-- [VLSI Routing: Global Route and Detail Route](#VLSIRouting:GlobalRouteandDetailRoute)
+- [VLSI Routing: Global Route and Detail Route](#VLSIRoutingGlobalRouteandDetailRoute)
 - [Links](#Links)
 
 # Digital VLSI SoC Design and planning Training
