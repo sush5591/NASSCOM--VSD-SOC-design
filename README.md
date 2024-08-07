@@ -1,5 +1,5 @@
 # NASSCOM--VSD-SOC-design
-- [Lessons Leaanred](#LessonsLearned)
+- [Content Learned](#ContentLearned)
 - [Day 1](#Day1)
 - [Overview of QFN-48 Chip, Pads, Core, Die, and IPs](#OverviewofQFN-48Chip,Pads,Core,Die,andIPs)
 - [Introduction to IC Design components and terminologies](#IntroductiontoICDesigncomponentsandterminologies)
@@ -40,7 +40,7 @@
 
 Welcome to the OpenLane workshop! Throughout this session, we will explore the journey of creating an Application Specific Integrated Circuit (ASIC) using the OpenLane ASIC flow. This comprehensive process begins with an RTL file and progresses through multiple crucial stages, ultimately resulting in the creation of a GDS file.
 
-## Lessons Learned
+## Content Learned
 
 Understanding the RTL to GDS Flow:
 
