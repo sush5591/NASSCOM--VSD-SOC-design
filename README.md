@@ -574,21 +574,6 @@ Now the next step is to run the SPICE file in ngspice tool by using command ngsp
 
 In this lab, we will characterize the inverter using ngspice and Sky130 model files. The goal is to extract key parameters from the simulation results.
 
-## Parameters to Characterize
-
-Certainly! Here’s the modified table format with updated values:
-
-| **Characteristic**       | **Details**                                                                                       |
-|--------------------------|---------------------------------------------------------------------------------------------------|
-| **Rise Time**            | The time taken for the output waveform to transition from 20% to 80% of its maximum value.       |
-|                          | - Data points: <br> \( x_0 = 6.15238 \times 10^{-9} \) s, \( y_0 = 0.660007 \) <br> \( x_1 = 6.20366 \times 10^{-9} \) s, \( y_1 = 2.64009 \) <br> Rise time = \( x_1 - x_0 = 0.0423 \) ns  |
-| **Fall Time**            | The time taken for the output waveform to transition from 80% to 20% of its maximum value.       |
-|                          | - Data points: <br> \( x_0 = 8.04034 \times 10^{-9} \) s, \( y_0 = 2.64003 \) <br> \( x_1 = 8.06818 \times 10^{-9} \) s, \( y_1 = 0.659993 \) <br> Fall time = \( x_1 - x_0 = 0.0278 \) ns |
-| **Propagation Delay**    | The time taken for a 50% transition at the output (0 to 1) corresponding to a 50% transition at the input (1 to 0). |
-|                          | - Data points: <br> \( x_0 = 2.18449 \times 10^{-9} \) s, \( y_0 = 1.64994 \) <br> \( x_1 = 2.15000 \times 10^{-9} \) s, \( y_1 = 1.65011 \) <br> Propagation delay = \( x_1 - x_0 = 0.0345 \) ns |
-| **Cell Fall Delay**      | The time taken for a 50% transition at the output (1 to 0) corresponding to a 50% transition at the input (0 to 1). |
-|                          | - Data points: <br> \( x_0 = 4.05432 \times 10^{-9} \) s, \( y_0 = 1.65 \) <br> \( x_1 = 4.05001 \times 10^{-9} \) s, \( y_1 = 1.65 \) <br> Cell fall delay = \( x_1 - x_0 = 0.0043 \) ns |
-
 ## LEF File Creation
 Now that we have successfully characterized the inverter, the next step is to create a LEF (Library Exchange Format) file.
 
