@@ -1,5 +1,8 @@
 # NASSCOM--VSD-SOC-design
 
+- [Lessons Leaanred](#LessonsLearned)
+- [Reference Circuit Diagram](#reference-circuit-diagram)
+
 # Digital VLSI SoC Design and planning Training
 
 Welcome to the OpenLane workshop! Throughout this session, we will explore the journey of creating an Application Specific Integrated Circuit (ASIC) using the OpenLane ASIC flow. This comprehensive process begins with an RTL file and progresses through multiple crucial stages, ultimately resulting in the creation of a GDS file.
