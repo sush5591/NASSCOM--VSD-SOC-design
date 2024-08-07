@@ -329,7 +329,8 @@ In this case, when calculated
 # Day 2 Labs
 # Steps to run floorplan using OpenLANE
 
-![image](https://github.com/user-attachments/assets/57113e78-7302-4ee6-9c26-ab573eeb3d06)
+![image](https://github.com/user-attachments/assets/b218a695-0880-47ea-9f7e-ae00fa6a9bf8)
+![image](https://github.com/user-attachments/assets/b6a3b0fa-a2ac-405d-995b-61c29fc7dee3)
 
 For a smooth floorplan process, designers need to manage certain switches that influence the floorplan configuration. For example, switches such as the utilization factor and aspect ratio play a role in determining the floorplan's dimensions and layout. Designers should carefully review these switches to ensure they align with the project's requirements before initializing the floorplan. The image below illustrates the various types of switches used in the floorplan stage.
 
