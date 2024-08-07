@@ -785,7 +785,7 @@ Command for tkcon window to write lef
 
 Edit 'config.tcl' to change lib file and add the new extra lef into the openlane flow.
 
-![image](https://github.com/user-attachments/assets/7e28f51e-c091-454b-a683-dbeb10ba07d4)
+![image](https://github.com/user-attachments/assets/67c17a3a-2c15-44ca-a180-be2fc8b771a5)
 
 ![6 re design](https://github.com/user-attachments/assets/2b1d9e0e-36e8-4682-b93b-be1aea3476c5)
 
