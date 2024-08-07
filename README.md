@@ -838,9 +838,6 @@ run_placement
 ```
 ![8 magic result](https://github.com/user-attachments/assets/abcf68bc-ac3c-4529-9f74-ce90ca69f262)
 
-![image](https://github.com/AnoushkaTripathi/NASSCOM-VSD-SoC-design-Program/assets/98522737/b7c8cdb1-5b2a-4216-b99e-119553f2bf75)
-
-
 ```
 
 Do Post-Synthesis timing analysis with OpenSTA tool.
