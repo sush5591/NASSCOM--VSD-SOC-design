@@ -5,7 +5,7 @@
 - [Introduction to IC Design components and terminologies](#IntroductiontoICDesigncomponentsandterminologies)
 - [Introduction to RISC-V](#IntroductiontoRISC-V)
 - [From Software Applications to Hardware](#FromSoftwareApplicationstoHardware)
-- [Introduction to Components of Open-Source Digital ASIC Design](#IntroductiontoComponentsofOpen-SourceDigitalASICDesign)
+- [OpenLANE:Introduction to Components of Open-Source Digital ASIC Design](#OpenIntroductiontoComponentsofOpen-SourceDigitalASICDesign)
 - [Simplified RTL to GDS Flow](#SimplifiedRTLtoGDSFlow)
 - [Introduction to OpenLANE Detailed ASIC Design Flow](#IntroductiontoOpenLANEDetailedASICDesignFlow)
 - [Day 1 Labs](#Day1Labs)
