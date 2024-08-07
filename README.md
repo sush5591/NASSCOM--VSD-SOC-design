@@ -191,7 +191,11 @@ MAGIC and Netgen are used for LVS by comparing Extracted SPICE by MAGIC and Veri
 
 ## Day 1 Labs
 
-![image](https://github.com/user-attachments/assets/1ea07fe3-48f7-43b1-a4f2-bc31c4293a21)
+![image](https://github.com/user-attachments/assets/a4b0c98b-4f08-43a2-91b3-b35be88aa99d)
+![image](https://github.com/user-attachments/assets/3f65e488-78d1-4575-a72e-0afae9e425c4)
+
+
+
 
 ![Screenshot from 27 ‎July ‎2024, ‏‎11:28:25](https://github.com/user-attachments/assets/36759026-d74d-4ec1-9f6a-3b9558126c4a)
 
