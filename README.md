@@ -617,7 +617,8 @@ Modify the file according to diagram given in video
 
 Now the next step is to run the SPICE file in ngspice tool by using command ngspice sky130_inv.spice
 
-These were th few errors facd while installing
+These were th few errors while installing
+
 ![12 few errors while installing ngspice](https://github.com/user-attachments/assets/8307dc77-64a9-4682-9c53-1247d54c79f4)
 
 ![13 plot](https://github.com/user-attachments/assets/55d36762-8ae2-460c-baf5-f6ca08c0d32c)
@@ -846,9 +847,8 @@ run_synthesis
 
 
 Commands to view and change parameters to improve timing and run synthesis
-```
-![16 improve slack added few lines](https://github.com/user-attachments/assets/86cb69fe-bef3-4ddf-81d8-d39984356e0b)
 
+![16 improve slack added few lines](https://github.com/user-attachments/assets/587b9ad6-76da-4325-8832-02cc67aa1fe2)
 
 # Now once again we have to prep design so as to update variables
 prep -design picorv32a -tag 14-08_18-31 -overwrite
