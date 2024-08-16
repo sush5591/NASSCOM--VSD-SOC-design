@@ -801,7 +801,7 @@ Here’s the information formatted in a table:
 
     # Command to save as
     save sky130_vsdinv.mag
-    
+    a
 ![6 mag file](https://github.com/user-attachments/assets/1a7b3831-0df2-4c94-a0b1-4518238d9e06)
 
 
