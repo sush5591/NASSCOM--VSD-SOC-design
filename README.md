@@ -162,7 +162,8 @@ The simplified RTL to GDS flow begins with an RTL file and, through a series of 
         After clock routing, signal routing is performed using the remaining metal layers.
         Routing is divided into Global Routing (generates a routing guide based on PDK instructions) and Detailed Routing (actual routing according to the guide).
         
-![image](https://github.com/AnoushkaTripathi/NASSCOM-VSD-SoC-design-Program/assets/98522737/6aa48de1-e1b3-4752-b38a-e0b996cf4aae)
+![image](https://github.com/user-attachments/assets/b129d5cc-5dac-44ca-ad16-4380caf23313)
+
 
     Sign-off:
         Once routing is completed, the chip undergoes various checks during the sign-off stage:
@@ -229,7 +230,8 @@ MAGIC and Netgen are used for LVS by comparing Extracted SPICE by MAGIC and Veri
 ![image](https://github.com/user-attachments/assets/a4b0c98b-4f08-43a2-91b3-b35be88aa99d)
 ![image](https://github.com/user-attachments/assets/3f65e488-78d1-4575-a72e-0afae9e425c4)
 
-![Screenshot from 27 ‎July ‎2024, ‏‎11:28:25](https://github.com/user-attachments/assets/36759026-d74d-4ec1-9f6a-3b9558126c4a)
+![1 openlane](https://github.com/user-attachments/assets/e02c120c-c92a-4cde-8b3d-9797e53b66da)
+
 
 1.  Understanding the use of various linux commands
 
@@ -249,7 +251,8 @@ MAGIC and Netgen are used for LVS by comparing Extracted SPICE by MAGIC and Veri
 
    - clear : This command clears the terminal.
 
-![2](https://github.com/user-attachments/assets/8c9ff688-e6ab-4f96-8532-88cb757d2529)
+![2 openlane](https://github.com/user-attachments/assets/8dc565ba-fa06-4b85-be6f-1f19e1ed3541)
+![3 openlane](https://github.com/user-attachments/assets/fc659b31-13d1-428c-bb55-9d1f5de416bb)
 
 To run in interactive mode (step by step mode)
 
@@ -265,12 +268,11 @@ To prepare and setup the design
 
     % prep -design picorv32a
 
-![3a](https://github.com/user-attachments/assets/f5fbe8d5-a1a9-4b80-928e-79be10525605)
-![3b](https://github.com/user-attachments/assets/b9d58f9b-0d7e-4e25-b1fd-ee29c809f8c9)
+![4 openlane](https://github.com/user-attachments/assets/dc396367-17d8-4eca-bdc7-500d70ada99b)
 
 Once the preparation is complete, a new directory with the current date will be generated within the “runs” folder. Inside this directory, all the necessary subdirectories for storing results, reports, and other relevant data will be created.
 
-![4](https://github.com/user-attachments/assets/df7d8160-dc29-4651-9f1e-f41a290ef4b2)
+![5 location](https://github.com/user-attachments/assets/dfe8bde1-df4a-4dd3-bcc2-ef4ffa0bcf3a)
 
 The preparation step involves the following actions for the picorv32a design within the openLANE flow:
 
@@ -285,26 +287,28 @@ The technology LEF (.tlef) and cell LEF (.lef) files are merged into a unified f
 All design-related files are placed under the designs directory.
 This ensures that the necessary files are organized and accessible during subsequent steps.
 
-![5](https://github.com/user-attachments/assets/32ca3c89-8e11-42b0-b8fd-63a82c1847f1)
 
 | `config.tcl`	 | contains the configurations used by openLANE |                      
 | :-------- | :-------                                     | 
 | `src`      |  contains verilog files and constraints file|
 
-![6](https://github.com/user-attachments/assets/316e6f41-3ad8-449d-98a8-0745ccc9acf7)
+![8 tcl file location](https://github.com/user-attachments/assets/ef8fd537-6b4f-4e18-82cd-147e37dd51e1)
+![9 config tcl](https://github.com/user-attachments/assets/fb6c6116-4860-4031-805a-71de527dc81c)
 
 ` Synthesis `
    % run_synthesis
 
-![7](https://github.com/user-attachments/assets/7019bdab-eb5f-4a81-9c5a-350d8ef7eaba)
+![6 executing abc](https://github.com/user-attachments/assets/c40b2547-768a-4299-91aa-3db46202491f)
 
-![8](https://github.com/user-attachments/assets/11b67f58-5740-4419-a2ae-4f25ca1db790)
+![7 synthesis successful](https://github.com/user-attachments/assets/8eb0fe0d-5f3c-4e1f-8288-71da9f126ec3)
 
-![9](https://github.com/user-attachments/assets/62d3982b-c5cb-4d4c-84cc-ea80716a3bd3)
+![10 chip area](https://github.com/user-attachments/assets/5cb26b74-dcc4-4ab5-aedb-bf7b410408b6)
 
-![10a](https://github.com/user-attachments/assets/f01634b2-5600-4265-a5bc-c0902bd238ba)
+` Flop Ratio `= 10.84%
 
-![10b](https://github.com/user-attachments/assets/b56ed027-9000-4d8c-b2b6-d47f38402ae4)
+![11 d ff count by no of cell](https://github.com/user-attachments/assets/7b906d99-9eda-4333-afd9-791a6c2e54a0)
+
+![12 flop ratio](https://github.com/user-attachments/assets/0f513ca4-6490-4868-827a-c3be48a7d7ab)
 
 
 ## Day 2
@@ -366,23 +370,21 @@ In this case, when calculated
 
 For a smooth floorplan process, designers need to manage certain switches that influence the floorplan configuration. For example, switches such as the utilization factor and aspect ratio play a role in determining the floorplan's dimensions and layout. Designers should carefully review these switches to ensure they align with the project's requirements before initializing the floorplan. The image below illustrates the various types of switches used in the floorplan stage.
 
-    % run_floorplan
+   
 
-![1 floorplan_tcl](https://github.com/user-attachments/assets/b03d5433-6dfe-433e-ba93-3b0d96fa840c)
+![1 all tcl file](https://github.com/user-attachments/assets/0e5c1fe3-11e6-42f6-8c85-d22285afc03c)
+![2 floorplan tcl](https://github.com/user-attachments/assets/3efbf632-a14c-4ca0-b7ef-53243c55fa99)
 
-![2 floorplan tcl file](https://github.com/user-attachments/assets/020f0c36-1514-4725-8952-55e652fcf8d5)
+ % run_floorplan
+ 
+![3 run floor plan](https://github.com/user-attachments/assets/524d99ea-066a-4322-b2bb-419b9e3b8ba0)
+![4 floorplan succesful](https://github.com/user-attachments/assets/22d543ce-cd18-4362-a930-f5977a5527c2)
+![5 floorplan time stamp](https://github.com/user-attachments/assets/3a416cf7-9197-4411-89f4-8b06bf06f119)
 
-![3 config_tcl](https://github.com/user-attachments/assets/4375ad78-494f-40ac-b54d-ccaca2a45bba)
-
-![4 floor results](https://github.com/user-attachments/assets/0fd425ed-2a52-4db8-823d-a06b6a18007e)
-
-![5 def file](https://github.com/user-attachments/assets/933ff44e-5ff0-46d5-8644-d0c4169e864a)
 
  Once the floorplan is complete, you can review the generated report to assess aspects such as die area. However, to visualize the design in a graphical user interface (GUI), you should use the MAGIC tool.
 
-![6 magic](https://github.com/user-attachments/assets/91a025aa-96f0-4881-ac7a-c16251955a80)
-
-![7 magic](https://github.com/user-attachments/assets/aaf39941-2fcf-4a3b-822e-7913fc80013e)
+![7 invoke magic](https://github.com/user-attachments/assets/a04aa62a-56ac-49a7-bd5e-a80ec283e27b)
 
 Review Floorplan layout in magic
 ## Design Alignment Instructions
@@ -391,17 +393,12 @@ Review Floorplan layout in magic
 1. Press `S` to select the entire design.
 2. Press `V` to vertically align it to the middle of the screen.
 
+![7 invoke magic s v](https://github.com/user-attachments/assets/a6fd7b2e-7549-4dd8-9871-0ce2eab8f0a7)
+
 ### Zooming In on a Specific Area:
 1. Left-click and drag to select the desired region.
 2. Right-click to bring up the context menu.
 3. Press `Z` to zoom in on the selected area.
-
-### Getting Details of a Cell:
-1. Move your cursor to the cell of interest.
-2. Press `S` to select the cell.
-3. In the `tkcon` window, enter the command "what"  to display cell details.
-
-![8 metal layer](https://github.com/user-attachments/assets/ef10e706-a3ae-4595-9b31-d69e88233686)
 
 ## Placement in VLSI Design
 
@@ -412,7 +409,9 @@ Placement plays a crucial role in VLSI (Very Large Scale Integration) design. It
    - Some overlaps between placed objects are allowed during this stage.
    - The goal is to achieve a rough layout that satisfies area constraints.
    - 
-![9 run placement](https://github.com/user-attachments/assets/3f14981f-fea7-4fb6-9510-089ebb46bc6d)
+% run_placement
+
+![11 placement done](https://github.com/user-attachments/assets/6403d408-02c2-4971-82fb-4d38aecf84f9)
 
 2. **Detailed Placement:**
    - Detailed placement refines the object locations obtained from global placement.
@@ -421,9 +420,20 @@ Placement plays a crucial role in VLSI (Very Large Scale Integration) design. It
 
 `magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &`
 
-![10 magic Placement](https://github.com/user-attachments/assets/822c04d8-ef5d-48be-8dae-1f817d37bdb7)
+![12 magic after P](https://github.com/user-attachments/assets/4f538944-03c6-4792-a4e9-004395aca988)
 
-![11 magic P](https://github.com/user-attachments/assets/23b6558f-27dc-4083-8511-d8e8c9dcb429)
+![13 invoke magic](https://github.com/user-attachments/assets/fd081b30-b49c-4acf-8540-927134326cb7)
+
+### Getting Details of a Cell:
+1. Move your cursor to the cell of interest.
+2. Press `S` to select the cell.
+3. In the `tkcon` window, enter the command "what"  to display cell details.
+
+![14 placement of SC](https://github.com/user-attachments/assets/185735da-74d6-46dd-975c-85a9b426653a)
+
+![tkcon what](https://github.com/user-attachments/assets/fd5db515-44a7-4eb5-aaab-70940f0e4511)
+
+![different metal layer](https://github.com/user-attachments/assets/35ea2a05-c6be-4c17-b084-0fdd32f06426)
 
 
 ### Inputs
@@ -525,7 +535,6 @@ PnR tools require minimal information, including the PR boundary (bounding box) 
 LEF files provide an abstract representation of the block, exposing only the essential details needed for PnR.
 
 
-
 | Cell LEF	 | Abstract view of the cell which holds information about PR boundary, pin positions and metal layer information.  |
 |---------------|---------------|
 | Technology LEF | Holds information about the metal layers, via, DRC technology used by placer and router.|
@@ -566,18 +575,26 @@ In VLSI design, understanding tracks and routes is essential for successful inte
     
 ## Day 3 labs
 
-Magic layout view to cmos inverter
-To get the cell files refer  
+IO Placer Revision
 
- [vsdstdcelldesign](https://github.com/nickson-jose/vsdstdcelldesign) 
+![1 mode 1 in floorplan tcl](https://github.com/user-attachments/assets/58167d77-24a3-42d4-8dd8-ac72679c9055)
+![2 change to mode 2 run FP](https://github.com/user-attachments/assets/211eccae-f19c-429a-990b-13a940c6a1ad)
+
+Check changes in the pins loacation through magic -T
+
+ ![3 see again magic FP](https://github.com/user-attachments/assets/721a9417-e09a-4592-84a1-1d93ebdaefa1)
  
- ![1 clone](https://github.com/user-attachments/assets/1d82aca4-3616-4287-af07-e8c7e9978a41)
+Clone custom inverter standard cell design from github repo
 
- ![2 copy](https://github.com/user-attachments/assets/c10b6a20-f501-4a8d-a8e0-4e1ef6a8cdf7)
+![4 clone git](https://github.com/user-attachments/assets/82891ded-3768-47d4-8317-14eb4076fddd)
 
- ![3 magic](https://github.com/user-attachments/assets/8affa364-3f0b-4d74-b23a-d48c75013c67)
+![5 copy sky130 tech to vsdstd cell](https://github.com/user-attachments/assets/32ce47c2-bcbf-4785-ad59-3ea6a15465df)
 
- ![4 inverter](https://github.com/user-attachments/assets/da9757df-31ea-4de1-b704-531ef6b137f7)
+Open custom invrter using magic command
+
+![6 invoke magic](https://github.com/user-attachments/assets/9a6fe3c6-c649-4dac-9659-f8290df6e8df)
+
+![7 cmos inverter all layer](https://github.com/user-attachments/assets/aa1c7912-1a1c-4343-8587-64c0f8fcedce)
 
 
 To extract the parasitics and characterize the cell design use below commands in tkcon window.
@@ -586,25 +603,30 @@ To extract the parasitics and characterize the cell design use below commands in
     ext2spice cthresh 0 rthresh 0
     ext2spice
 
-![5 extract](https://github.com/user-attachments/assets/6e4eef97-a4d9-41cd-819a-6c8d2df10113)
+![8 after extracting](https://github.com/user-attachments/assets/ce69a142-acf1-4d39-873a-785224d18e98)
 
-![6 ext file name](https://github.com/user-attachments/assets/d19bc9ce-9cf9-449b-8959-cd96a13f9712)
+![9 spice file has been created](https://github.com/user-attachments/assets/04598749-0d7d-4684-b705-22906bfcb2b8)
 
 
-Modify the file according to 
+![10 spice file need to edit](https://github.com/user-attachments/assets/18d2eaf3-fb19-4428-8d45-a0e7f726f2b9)
 
-![image](https://github.com/user-attachments/assets/f4c4bc49-30e1-49f3-8118-452d3f9d131c)
+Modify the file according to diagram given in video
 
-![7 vim spice](https://github.com/user-attachments/assets/c2825f3f-8021-4cda-8f70-25e262152b1e)
-
-![8 spice file edited as per diagram](https://github.com/user-attachments/assets/6e1c100b-df7c-4715-bc8a-38f54aa78ad7)
+![11 edited spice file](https://github.com/user-attachments/assets/cfb9f1c5-50a3-45b6-a9b4-6e6d6c957f0b)
 
 
 Now the next step is to run the SPICE file in ngspice tool by using command ngspice sky130_inv.spice
 
-![9 ngspice](https://github.com/user-attachments/assets/d5a7a37b-3364-484d-af6d-cb28a6f460aa)
+These were th few errors facd while installing
+![12 few errors while installing ngspice](https://github.com/user-attachments/assets/8307dc77-64a9-4682-9c53-1247d54c79f4)
 
-![10 plot](https://github.com/user-attachments/assets/efbffbe6-860f-490b-a33e-7a31be8dd065)
+![13 plot](https://github.com/user-attachments/assets/55d36762-8ae2-460c-baf5-f6ca08c0d32c)
+
+![14 cmos inv](https://github.com/user-attachments/assets/b3c70f16-9c6f-4cf7-ab2b-10e6298b36ec)
+
+Few readings are shown below
+
+![15 readings rise](https://github.com/user-attachments/assets/f515e06f-69a4-4e35-9838-e238ce9e78c2)
 
 
 # Inverter Characterization using Sky130 Model Files
@@ -615,6 +637,9 @@ In this lab, we will characterize the inverter using ngspice and Sky130 model fi
 Now that we have successfully characterized the inverter, the next step is to create a LEF (Library Exchange Format) file.
 
 wget http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz
+
+![16 pdk documentation](https://github.com/user-attachments/assets/d643d272-9778-49be-b4c6-30a7d5ab32bc)
+
 
 **VLSI Layout Geometries and DRC Errors**
 
@@ -656,9 +681,9 @@ In this section, we explore independent example layout geometries (M3.1, M3.2, M
 
 ---
 
-Use the command `magic -d XR` to open the Magic tool
+Use the command `magic -d XR` to open the Magic tool & Open met3.mag file as shown
 
-![11 drc files and contents](https://github.com/user-attachments/assets/b0d07132-1ad9-4f56-b926-468fd76fc6f0)
+![18 open metal 3](https://github.com/user-attachments/assets/991f0eef-b0df-4a36-91fb-fb672e10f305)
 
 # Using Magic Tool: Filling an Area with Metal 3 and Creating a VIA2 Mask
 
@@ -671,21 +696,24 @@ In this guide, we'll demonstrate how to fill a selected area with metal 3 and cr
    - Select the desired area on your layout.
    - Guide the pointer to the metal 3 layer.
    - Press `P` to fill the selected region with metal 3.
+  
+![19 select area](https://github.com/user-attachments/assets/29338159-69e9-4adf-afc8-6c277dbe33bc)
 
 2. **Create the VIA2 Mask:**
    - Open the `tkcon` terminal within Magic.
    - Type the command: `cif see VIA2`.
    - The metal 3-filled area will now be associated with the VIA2 mask.
 
+![20 paint via](https://github.com/user-attachments/assets/027f88a4-5dfb-4a0a-bd3f-9d577862f503)
 
-![12 met3](https://github.com/user-attachments/assets/88fd82d7-bc22-4827-bf8e-703586d71cb8)
 
 ## **Lab exercise to fix Poly-9 error in Sky130 tech file**
 
-![13 load poly](https://github.com/user-attachments/assets/06fcb110-844a-413c-bb08-23eeae757951)
+![21 load poly](https://github.com/user-attachments/assets/fa135cdb-a841-4102-9c78-6df8e6c8d12f)
 
-![14 poly](https://github.com/user-attachments/assets/a724c23a-9b7c-4b68-9e3b-1f2e40a90c8a)
+![22 edit sky 130 tech file](https://github.com/user-attachments/assets/54a1b4bc-667e-4e41-89a3-00d9aa9f1874)
 
+![23 poly error](https://github.com/user-attachments/assets/d2b71392-7031-4805-8d96-8b24c670babd)
 
 Commands to run in tkcon window
 
@@ -703,7 +731,6 @@ Incorrectly implemented difftap.2 simple rule correction
 
 ![image](https://github.com/user-attachments/assets/de1702d8-7ffe-42ea-a99c-4eb80299358f)
 
-
 ![image](https://github.com/user-attachments/assets/90d808cb-a60f-4018-a7a3-90b4220f55ec)
 
 
@@ -713,7 +740,9 @@ N well rules
 
 ![image](https://github.com/user-attachments/assets/3df743de-76c7-464e-bc9e-463f1dbc2019)
 
-![15 nwell](https://github.com/user-attachments/assets/9431a2a3-2f95-43ff-81a4-49cf7393ac3a)
+![24 load nwell](https://github.com/user-attachments/assets/32a6828a-fb3d-47d6-ad71-1dd910e295c6)
+
+![25 no error](https://github.com/user-attachments/assets/bcce48cb-bdcc-45eb-abfd-a737903925d4)
 
 
 # Day 4 : Pre-layout timing analysis and importance of good clock tree 
@@ -744,9 +773,8 @@ Here’s the information formatted in a table:
 
 ## Day 4 Labs
 
- Commands to open the custom inverter layout
-![1 tracks](https://github.com/user-attachments/assets/e3ec19b2-54bf-4177-894c-d9f03f569c61)
-
+ Commands to open the custom inverter 
+ ![2 tracks](https://github.com/user-attachments/assets/8ad04956-2f35-4b33-adab-274878a49f2b)
 
     # Change directory to vsdstdcelldesign
     cd Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign
@@ -754,20 +782,27 @@ Here’s the information formatted in a table:
     # Command to open custom inverter layout in magic
     magic -T sky130A.tech sky130_inv.mag &
 
+    ![1 magic with mag file](https://github.com/user-attachments/assets/dd55a150-cc7b-47c4-89ee-f9e3b6f3667c)
+
  Commands for tkcon window to set grid as tracks of locali layer
 
     # Get syntax for grid command
     help grid
 
+![3 grid](https://github.com/user-attachments/assets/52036481-9a35-4354-ab63-3cc29230c7cd)
+
     # Set grid values accordingly
     grid 0.46um 0.34um 0.23um 0.17um
 
-![2 grid](https://github.com/user-attachments/assets/f7868225-b4d4-4592-8af0-79b041136471)
+![4 with specific grid](https://github.com/user-attachments/assets/4c165e62-5100-40b7-837c-0b91e85bbfea)
+
 
  **Save the finalized layout with custom name and open it.**
 
     # Command to save as
     save sky130_vsdinv.mag
+    
+![6 mag file](https://github.com/user-attachments/assets/1a7b3831-0df2-4c94-a0b1-4518238d9e06)
 
 
 Generate lef from the layout.
@@ -777,17 +812,16 @@ Command for tkcon window to write lef
     # lef command
     lef write
 
-![3 copy lef file](https://github.com/user-attachments/assets/dcd13249-de67-4d5f-908f-7d90b94c5312)
+![7 magic mag](https://github.com/user-attachments/assets/7ca3e920-6570-411e-a590-ad4dc7345604)
 
+![8 lef write](https://github.com/user-attachments/assets/20415ec7-c978-43ba-91db-0e7dbb406bbe)
 
-![4 copied cell characterixation fie](https://github.com/user-attachments/assets/56fda176-7517-4101-b47d-9a6af130fe33)
+![9 copied all files t src directory](https://github.com/user-attachments/assets/14f61f9e-5916-49ad-a5f9-6e042eb66a19)
 
 
 Edit 'config.tcl' to change lib file and add the new extra lef into the openlane flow.
 
-![image](https://github.com/user-attachments/assets/67c17a3a-2c15-44ca-a180-be2fc8b771a5)
-
-![6 re design](https://github.com/user-attachments/assets/2b1d9e0e-36e8-4682-b93b-be1aea3476c5)
+![10 edit config tcl file](https://github.com/user-attachments/assets/d83486d8-a3b2-4bb7-b201-93afee160cdb)
 
      set ::env(LIB_SYNTH) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
 
@@ -802,12 +836,22 @@ Edit 'config.tcl' to change lib file and add the new extra lef into the openlane
 
 run_synthesis 
 
-![5 synthesis](https://github.com/user-attachments/assets/c961caff-21c5-4ad6-a9d3-ed3ecdeb49dd)
+![12 invoke docker](https://github.com/user-attachments/assets/2d6f5ee2-da61-4717-9ea8-be6ef047814a)
+
+![13 add 2 lines and synthesis](https://github.com/user-attachments/assets/53b758c2-b7b3-4864-82ce-1babb5971c50)
+
+![14 synthesis complete'](https://github.com/user-attachments/assets/29cabef6-df91-4c71-ac0f-2faa2002e55c)
+
+![15 chip area](https://github.com/user-attachments/assets/d7a9482c-6a0b-47e1-9996-4ea2dd7499e3)
+
 
 Commands to view and change parameters to improve timing and run synthesis
 ```
+![16 improve slack added few lines](https://github.com/user-attachments/assets/86cb69fe-bef3-4ddf-81d8-d39984356e0b)
+
+
 # Now once again we have to prep design so as to update variables
-prep -design picorv32a -tag 24-03_10-03 -overwrite
+prep -design picorv32a -tag 14-08_18-31 -overwrite
 
 # Addiitional commands to include newly added lef to openlane flow merged.lef
 set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
@@ -831,12 +875,25 @@ set ::env(SYNTH_SIZING) 1
 # Command to display current value of variable SYNTH_DRIVING_CELL to check whether it's the proper cell or not
 echo $::env(SYNTH_DRIVING_CELL)
 
+![17 synthesis done](https://github.com/user-attachments/assets/455512bc-5289-441d-a583-b5851773e0b6)
+
+![18 floor plan](https://github.com/user-attachments/assets/7aac441b-dc35-4156-b6cf-572093ebf4c0)
+
+![19 io decap](https://github.com/user-attachments/assets/32bf9125-5d55-4212-af0f-11401cf0d857)
+
 
 # Now we are ready to run placement
 run_placement
 
 ```
-![8 magic result](https://github.com/user-attachments/assets/abcf68bc-ac3c-4529-9f74-ce90ca69f262)
+![20 placement analysis](https://github.com/user-attachments/assets/c7259303-3012-48d0-96e8-4bb430e39fe7)
+
+![21 magic after P](https://github.com/user-attachments/assets/1f13ff5b-c7f6-445f-a117-883fbedf52ed)
+
+![22 magic](https://github.com/user-attachments/assets/1d88a373-d244-43d5-9284-7343cbd17bc9)
+
+![23 magic a](https://github.com/user-attachments/assets/80a48437-d3b0-45e7-a10f-4fc6b389d1f4)
+
 
 ```
 
@@ -844,16 +901,17 @@ Do Post-Synthesis timing analysis with OpenSTA tool.
 
 Newly created pre_sta.conf for STA analysis in openlane directory
 
-![9 my base](https://github.com/user-attachments/assets/a0b024ea-4783-4a40-b7b0-98a3a359d96a)
+![25 pre sta](https://github.com/user-attachments/assets/2fb849e0-f57b-4381-a650-15374d461360)
 
 my_base.sdc
 
+![24 my base](https://github.com/user-attachments/assets/540fb9bd-43e9-42de-b018-d1d60528de53)
 
-![image](https://github.com/AnoushkaTripathi/NASSCOM-VSD-SoC-design-Program/assets/98522737/0b5679e3-85f4-409c-b4da-b456e8c83258)
+![26 sta](https://github.com/user-attachments/assets/5ba8ba96-9723-455a-8f45-34b809688dc5)
 
 
 # Now once again we have to prep design so as to update variables
-prep -design picorv32a -tag 24-03_10-03 -overwrite
+prep -design picorv32a -tag 14-08_18-31 -overwrite
 
 # Addiitional commands to include newly added lef to openlane flow merged.lef
 set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
@@ -881,16 +939,17 @@ echo $::env(SYNTH_DRIVING_CELL)
 run_synthesis
 ```
 
-![11 sta](https://github.com/user-attachments/assets/7a79357f-1a47-4785-8ff0-a9ecbcb9791e)
+![29 synthesis with fanout 4](https://github.com/user-attachments/assets/6ff2bc52-6a8e-4975-9e24-237a93d96b4a)
 
-![12 cts](https://github.com/user-attachments/assets/1825b62e-a9a7-48f6-ac3b-4aeab6b24ed8)
+![30 new STA after synthesis](https://github.com/user-attachments/assets/bc1c5928-34c8-4524-a3da-358978c1cc28)
+
+![sta 2](https://github.com/user-attachments/assets/12a12fd4-8603-4cd7-ab3e-6e952d5c10ff)
 
 Finally slack is met 
 
 
 **Now run Placement**
 
-![8 magic result](https://github.com/user-attachments/assets/710d0fb8-c00d-44fc-ad86-7349c36f2170)
 
 
 ## Day 5 GDS II Final step
