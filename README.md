@@ -802,7 +802,7 @@ Here’s the information formatted in a table:
 
     # Command to save as
     save sky130_vsdinv.mag
-    a
+    
 ![6 mag file](https://github.com/user-attachments/assets/1a7b3831-0df2-4c94-a0b1-4518238d9e06)
 
 
@@ -885,7 +885,6 @@ echo $::env(SYNTH_DRIVING_CELL)
 # Now we are ready to run placement
 run_placement
 
-```
 ![20 placement analysis](https://github.com/user-attachments/assets/c7259303-3012-48d0-96e8-4bb430e39fe7)
 
 ![21 magic after P](https://github.com/user-attachments/assets/1f13ff5b-c7f6-445f-a117-883fbedf52ed)
@@ -894,8 +893,6 @@ run_placement
 
 ![23 magic a](https://github.com/user-attachments/assets/80a48437-d3b0-45e7-a10f-4fc6b389d1f4)
 
-
-```
 
 Do Post-Synthesis timing analysis with OpenSTA tool.
 
@@ -937,7 +934,6 @@ echo $::env(SYNTH_DRIVING_CELL)
 
 # Now that the design is prepped and ready, we can run synthesis using following command
 run_synthesis
-```
 
 ![29 synthesis with fanout 4](https://github.com/user-attachments/assets/6ff2bc52-6a8e-4975-9e24-237a93d96b4a)
 
@@ -946,10 +942,6 @@ run_synthesis
 ![sta 2](https://github.com/user-attachments/assets/12a12fd4-8603-4cd7-ab3e-6e952d5c10ff)
 
 Finally slack is met 
-
-
-**Now run Placement**
-
 
 
 ## Day 5 GDS II Final step
