@@ -977,8 +977,6 @@ In OpenLANE, the PDN (Power Distribution Network) is crucial for proper power de
 
 ##Routing
 
-Command to perform routing
-``
 # Check value of 'CURRENT_DEF'
 echo $::env(CURRENT_DEF)
 
