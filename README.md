@@ -955,10 +955,14 @@ In OpenLANE, the PDN (Power Distribution Network) is crucial for proper power de
 - The PDN ensures that all standard cells and macros receive adequate power.
 - It provides a network of power rails (VDD and VSS) across the chip.
 
+![1 gen pdn](https://github.com/user-attachments/assets/20e82fa8-8047-454f-95b2-6ea0006a221b)
+
 ## 2. Using `gen_pdn` Procedure
 
 - The `gen_pdn` procedure is responsible for running the PDN generation process.
 - It sets up the power grid, defines power rails, and ensures proper connectivity.
+
+![2 timestamp](https://github.com/user-attachments/assets/2a8fa68f-fe32-460d-82b5-eee37773c1b7)
 
 ## Common Issues
 
@@ -970,13 +974,11 @@ In OpenLANE, the PDN (Power Distribution Network) is crucial for proper power de
    - Ensure that this variable is correctly set in the `config.tcl` file.
    - It provides essential information for PDN generation.
 
-![8 magic result](https://github.com/user-attachments/assets/7700d7de-ae83-450c-b02d-183165dc1e9e)
-
 
 ##Routing
 
 Command to perform routing
-```
+``
 # Check value of 'CURRENT_DEF'
 echo $::env(CURRENT_DEF)
 
@@ -984,15 +986,15 @@ echo $::env(CURRENT_DEF)
 echo $::env(ROUTING_STRATEGY)
 
 # Command for detailed route using TritonRoute
-run_routing
-```
-![1 routing](https://github.com/user-attachments/assets/5c975fb4-edd2-4826-a176-a1b622905ca0)
+
+![3 last](https://github.com/user-attachments/assets/1edc5558-6988-43d4-be3e-201ae09bc965)
+
+![4](https://github.com/user-attachments/assets/6feace4a-0590-4f55-96ec-7ffce2fc22dc)
 
 
 Power Planning :
 
 ![image](https://github.com/user-attachments/assets/27508f5c-736c-49b7-a15e-38490205c8a0)
-
 
 
 ## VLSI Routing: Global Route and Detail Route
