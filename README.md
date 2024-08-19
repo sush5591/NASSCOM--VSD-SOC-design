@@ -848,8 +848,6 @@ run_synthesis
 
 Commands to view and change parameters to improve timing and run synthesis
 
-![16 improve slack added few lines](https://github.com/user-attachments/assets/587b9ad6-76da-4325-8832-02cc67aa1fe2)
-
 # Now once again we have to prep design so as to update variables
 prep -design picorv32a -tag 14-08_18-31 -overwrite
 
@@ -874,6 +872,8 @@ set ::env(SYNTH_SIZING) 1
 
 # Command to display current value of variable SYNTH_DRIVING_CELL to check whether it's the proper cell or not
 echo $::env(SYNTH_DRIVING_CELL)
+
+![16 improve slack added few lines](https://github.com/user-attachments/assets/587b9ad6-76da-4325-8832-02cc67aa1fe2)
 
 ![17 synthesis done](https://github.com/user-attachments/assets/455512bc-5289-441d-a583-b5851773e0b6)
 
@@ -955,13 +955,12 @@ In OpenLANE, the PDN (Power Distribution Network) is crucial for proper power de
 - The PDN ensures that all standard cells and macros receive adequate power.
 - It provides a network of power rails (VDD and VSS) across the chip.
 
-![1 gen pdn](https://github.com/user-attachments/assets/20e82fa8-8047-454f-95b2-6ea0006a221b)
-
 ## 2. Using `gen_pdn` Procedure
 
 - The `gen_pdn` procedure is responsible for running the PDN generation process.
 - It sets up the power grid, defines power rails, and ensures proper connectivity.
 
+![1 gen pdn](https://github.com/user-attachments/assets/20e82fa8-8047-454f-95b2-6ea0006a221b)
 ![2 timestamp](https://github.com/user-attachments/assets/2a8fa68f-fe32-460d-82b5-eee37773c1b7)
 
 ## Common Issues
@@ -975,20 +974,15 @@ In OpenLANE, the PDN (Power Distribution Network) is crucial for proper power de
    - It provides essential information for PDN generation.
 
 
-##Routing
+![3 last](https://github.com/user-attachments/assets/1edc5558-6988-43d4-be3e-201ae09bc965)
+
+![4](https://github.com/user-attachments/assets/6feace4a-0590-4f55-96ec-7ffce2fc22dc)
 
 # Check value of 'CURRENT_DEF'
 echo $::env(CURRENT_DEF)
 
 # Check value of 'ROUTING_STRATEGY'
 echo $::env(ROUTING_STRATEGY)
-
-# Command for detailed route using TritonRoute
-
-![3 last](https://github.com/user-attachments/assets/1edc5558-6988-43d4-be3e-201ae09bc965)
-
-![4](https://github.com/user-attachments/assets/6feace4a-0590-4f55-96ec-7ffce2fc22dc)
-
 
 Power Planning :
 
@@ -1025,7 +1019,6 @@ In VLSI design, the routing process is divided into two main stages: global rout
 
 
 ## Links
-
 https://github.com/sush5591/NASSCOM--VSD-SOC-design
 
 https://www.linkedin.com/in/sushant-sukhadeo-gawade-59b60a84/
